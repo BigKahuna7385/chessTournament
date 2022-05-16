@@ -19,7 +19,7 @@ public final class Name {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Integer.getInteger("" + lastName.hashCode() + firstName.hashCode());
     }
 
     @Override

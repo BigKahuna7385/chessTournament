@@ -28,7 +28,7 @@ public final class Playerinfo {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Integer.getInteger("" + name.hashCode() + clubName.hashCode() + listNumber);
     }
 
     @Override

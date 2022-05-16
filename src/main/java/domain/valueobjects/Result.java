@@ -24,6 +24,11 @@ public final class Result {
     }
 
     @Override
+    public int hashCode() {
+        return Integer.getInteger("" + (whiteHasWon() ? 1 : 0) + (blackHasWon() ? 1 : 0) + (isDraw() ? 1 : 0));
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -37,10 +42,4 @@ public final class Result {
         Result result = (Result) obj;
         return isDraw() == result.isDraw() && blackHasWon() == result.blackHasWon() && whiteHasWon() == result.whiteHasWon();
     }
-
-    @Override
-    public int hashCode() {
-        return Integer.getInteger("" + (whiteHasWon() ? 1 : 0) + (blackHasWon() ? 1 : 0) + (isDraw() ? 1 : 0));
-    }
-
 }

@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="initial commit">
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="restructured project and added most of the equals and hash functions for value objects.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Round.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Tournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652709331113</updated>
-      <workItem from="1652709332862" duration="5045000" />
+      <workItem from="1652709332862" duration="5280000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -66,7 +61,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652712268860</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="restructured project and added most of the equals and hash functions for value objects.">
+      <created>1652714990116</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652714990116</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,6 +87,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="restructured project and added most of the equals and hash functions for value objects." />
+    <option name="LAST_COMMIT_MESSAGE" value="restructured project and added most of the equals and hash functions for value objects." />
   </component>
 </project>
