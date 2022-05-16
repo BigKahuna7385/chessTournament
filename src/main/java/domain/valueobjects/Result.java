@@ -1,14 +1,23 @@
 package domain.valueobjects;
 
+import domain.exceptions.InvalidResultException;
+
 public final class Result {
     private final boolean WHITEWON;
     private final boolean BLACKWON;
     private final boolean DRAW;
 
-    public Result(boolean WHITEWON, boolean BLACKWON, boolean DRAW) {
+    public Result(boolean WHITEWON, boolean BLACKWON, boolean DRAW) throws InvalidResultException {
         this.WHITEWON = WHITEWON;
         this.BLACKWON = BLACKWON;
         this.DRAW = DRAW;
+        int cnt = 0;
+        boolean[] booleans = {WHITEWON,BLACKWON,DRAW};
+        for (Boolean b : booleans)
+           if (b) cnt++;
+
+        if (cnt != 1)
+            throw new InvalidResultException();
     }
 
     public boolean whiteHasWon() {

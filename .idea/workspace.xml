@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="restructured project and added most of the equals and hash functions for value objects.">
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added remaining hashcode functions">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidRatingNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidResultException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +45,11 @@
     "WebServerToolWindowFactoryState": "false"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="domain.exceptions" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -52,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652709331113</updated>
-      <workItem from="1652709332862" duration="5280000" />
+      <workItem from="1652709332862" duration="6565000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -68,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652714990116</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added remaining hashcode functions">
+      <created>1652715193075</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652715193075</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,6 +101,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="restructured project and added most of the equals and hash functions for value objects." />
-    <option name="LAST_COMMIT_MESSAGE" value="restructured project and added most of the equals and hash functions for value objects." />
+    <MESSAGE value="added remaining hashcode functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="added remaining hashcode functions" />
   </component>
 </project>
