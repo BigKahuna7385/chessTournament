@@ -1,6 +1,6 @@
 package domain.valueobjects;
 
-public class Rating {
+public final class Rating {
     private final int ELO;
     private final int DWZ;
 
@@ -15,5 +15,25 @@ public class Rating {
 
     public int getDWZ() {
         return DWZ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.getInteger("" + getELO() + getDWZ());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        Rating rating = (Rating) obj;
+        return getELO() == rating.getELO() && getDWZ() == rating.getDWZ();
     }
 }

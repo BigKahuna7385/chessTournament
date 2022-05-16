@@ -1,5 +1,6 @@
-package domain.entities;
+package domain.aggregates;
 
+import domain.entities.TournamentRating;
 import domain.valueobjects.Playerinfo;
 import domain.valueobjects.Rating;
 

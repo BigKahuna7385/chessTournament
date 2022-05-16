@@ -4,24 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ChessTournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/Round.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/Tournament.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/entities/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/entities/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/entities/TournamentRating.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecases/CalculateTournamentRating.java" afterDir="false" />
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="initial commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Round.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Tournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,8 +57,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652709331113</updated>
-      <workItem from="1652709332862" duration="2849000" />
+      <workItem from="1652709332862" duration="5045000" />
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1652712268860</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1652712268860</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -82,5 +82,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
 </project>

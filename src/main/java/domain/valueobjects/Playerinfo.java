@@ -1,6 +1,8 @@
 package domain.valueobjects;
 
-public class Playerinfo {
+import java.util.Objects;
+
+public final class Playerinfo {
 
     private final Name name;
     private final String clubName;
@@ -22,5 +24,25 @@ public class Playerinfo {
 
     public int getListNumber() {
         return listNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        Playerinfo playerinfo = (Playerinfo) obj;
+        return getName().equals(playerinfo.getName()) && getClubName().equals(playerinfo.getClubName()) && getListNumber() == playerinfo.getListNumber();
     }
 }

@@ -1,6 +1,6 @@
-package domain;
+package domain.aggregates;
 
-import domain.entities.Game;
+import domain.aggregates.Game;
 
 public class Round {
 

@@ -1,4 +1,4 @@
-package domain;
+package domain.aggregates;
 
 public class Tournament {
 

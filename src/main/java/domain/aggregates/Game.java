@@ -1,4 +1,4 @@
-package domain.entities;
+package domain.aggregates;
 
 import domain.valueobjects.Result;
 
