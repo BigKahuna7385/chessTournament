@@ -5,8 +5,8 @@ import domain.exceptions.InvalidPlayerNameExeption;
 import java.util.Objects;
 
 public final class PlayerName {
-    private final String lastName;
-    private final String firstName;
+    final String lastName;
+    final String firstName;
 
     public PlayerName(String lastName, String firstName) throws InvalidPlayerNameExeption {
         this.lastName = lastName;

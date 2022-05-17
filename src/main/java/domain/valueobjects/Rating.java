@@ -6,8 +6,8 @@ import domain.factories.RatingFactory;
 import java.util.Objects;
 
 public final class Rating {
-    private final RatingNumber elo;
-    private final RatingNumber dwz;
+     final RatingNumber elo;
+     final RatingNumber dwz;
 
     public Rating(RatingNumber elo, RatingNumber dwz) throws InvalidRatingException {
         this.elo = elo;
@@ -16,16 +16,16 @@ public final class Rating {
             throw new InvalidRatingException();
     }
 
-    public static RatingFactory builder(){
-        return new RatingFactory();
-    }
-
     public RatingNumber getElo() {
         return elo;
     }
 
     public RatingNumber getDwz() {
         return dwz;
+    }
+
+    public static RatingFactory builder(){
+        return new RatingFactory();
     }
 
     @Override

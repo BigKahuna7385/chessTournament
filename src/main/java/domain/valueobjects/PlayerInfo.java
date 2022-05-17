@@ -7,16 +7,20 @@ import java.util.Objects;
 
 public final class PlayerInfo {
 
-    private final PlayerName name;
-    private final String clubName;
-    private final ListNumber listNumber;
+     final PlayerName name;
+     final String clubName;
+     final ListNumber listNumber;
 
     public PlayerInfo(PlayerName name, String clubName, ListNumber listNumber) throws InvalidPlayerInfoException {
         this.name = name;
         this.clubName = clubName;
         this.listNumber = listNumber;
         if (this.name == null || this.clubName == null || this.listNumber == null)
-            throw new InvalidPlayerInfoException();
+            throw new InvalidPlayerInfoException(this);
+    }
+
+    public static PlayerInfoFactory builder(){
+        return new PlayerInfoFactory();
     }
 
     public PlayerName getName() {
@@ -29,10 +33,6 @@ public final class PlayerInfo {
 
     public ListNumber getListNumber() {
         return listNumber;
-    }
-
-    public static PlayerInfoFactory builder(){
-        return new PlayerInfoFactory();
     }
 
     @Override

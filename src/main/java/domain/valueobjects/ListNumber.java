@@ -5,7 +5,7 @@ import domain.exceptions.InvalidListNumberException;
 import java.util.Objects;
 
 public final class ListNumber {
-    private final int listNumber;
+    final int listNumber;
 
     public ListNumber(int listNumber) throws InvalidListNumberException {
         this.listNumber = listNumber;

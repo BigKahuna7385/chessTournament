@@ -6,6 +6,7 @@ import domain.exceptions.*;
 import domain.valueobjects.*;
 
 public class PlayerFactory {
+
     private PlayerInfo playerInfo;
     private Rating rating;
 

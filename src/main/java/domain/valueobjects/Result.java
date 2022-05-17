@@ -5,9 +5,9 @@ import domain.exceptions.InvalidResultException;
 import java.util.Objects;
 
 public final class Result {
-    private final boolean whiteWon;
-    private final boolean blackWon;
-    private final boolean draw;
+    final boolean whiteWon;
+    final boolean blackWon;
+    final boolean draw;
 
 
     public Result(boolean whiteWon, boolean blackWon, boolean draw) throws InvalidResultException {
@@ -20,20 +20,20 @@ public final class Result {
 
     }
 
-    public boolean checkThatOnlyOneIsTrue(){
-        return ((whiteWon ? 1 : 0) + (blackWon ? 1 : 0) + (draw ? 1 : 0)) == 1;
-    }
-
-    public boolean whiteHasWon() {
+    public boolean isWhiteWon() {
         return whiteWon;
     }
 
-    public boolean blackHasWon() {
+    public boolean isBlackWon() {
         return blackWon;
     }
 
     public boolean isDraw() {
         return draw;
+    }
+
+    public boolean checkThatOnlyOneIsTrue() {
+        return ((whiteWon ? 1 : 0) + (blackWon ? 1 : 0) + (draw ? 1 : 0)) == 1;
     }
 
     @Override

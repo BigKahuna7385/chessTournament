@@ -1,4 +1,11 @@
 package domain.exceptions;
 
-public class InvalidPlayerInfoException extends Throwable {
+import domain.valueobjects.PlayerInfo;
+
+public class InvalidPlayerInfoException extends Exception {
+
+    public InvalidPlayerInfoException(PlayerInfo playerInfo) {
+        super("Playerinfo Fehlerhaft");
+        System.err.println("Nachname fehlt");
+    }
 }

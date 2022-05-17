@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public final class RatingNumber {
 
-    private final int ratingNumber;
+    final int ratingNumber;
 
     public RatingNumber(int ratingNumber) throws InvalidRatingNumberException {
         this.ratingNumber = ratingNumber;

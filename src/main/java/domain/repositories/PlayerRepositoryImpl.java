@@ -29,8 +29,6 @@ public class PlayerRepositoryImpl implements PlayerRepository {
         playerList.add(player);
     }
 
-
-
     @Override
     public List<Player> list() {
         return playerList;
