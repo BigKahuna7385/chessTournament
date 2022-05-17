@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added repositories">
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/factories/PlayerFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/factories/PlayerInfoFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/factories/RatingFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecases/CreatePlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecases/exceptions/PlayerAlreadyRegistered.java" afterDir="false" />
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added factories for player, ratings and playerinfo.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ChessTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ChessTournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usecases/CreatePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecases/CreatePlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +74,7 @@
       <updated>1652709331113</updated>
       <workItem from="1652709332862" duration="6638000" />
       <workItem from="1652772083218" duration="10170000" />
-      <workItem from="1652796712483" duration="3090000" />
+      <workItem from="1652796712483" duration="5346000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -131,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652792914780</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added factories for player, ratings and playerinfo.">
+      <created>1652800019580</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652800019580</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +149,7 @@
     <MESSAGE value="added checks to value objects and added exceptions" />
     <MESSAGE value="added missing exceptions with value object validations&#10;reworked equals and hashCode functions of value objects with IntelliJ code generation&#10;implemented aggregate functions&#10;moved game from entities to aggregates" />
     <MESSAGE value="added repositories" />
-    <option name="LAST_COMMIT_MESSAGE" value="added repositories" />
+    <MESSAGE value="added factories for player, ratings and playerinfo." />
+    <option name="LAST_COMMIT_MESSAGE" value="added factories for player, ratings and playerinfo." />
   </component>
 </project>

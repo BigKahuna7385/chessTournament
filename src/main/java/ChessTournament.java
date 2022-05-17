@@ -15,7 +15,7 @@ public class ChessTournament {
                     .rating(null,1448)
                     .build());
         } catch (PlayerAlreadyRegistered | InvalidListNumberException | InvalidPlayerInfoException |
-                 InvalidPlayerNameExeption | InvalidRatingNumberException | InvalidRatingException e) {
+                 InvalidPlayerNameExeption | InvalidRatingException | InvalidRatingNumberException e) {
             throw new RuntimeException(e);
         }
     }
