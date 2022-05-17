@@ -1,26 +1,43 @@
 package domain.aggregates;
 
 import domain.entities.TournamentRating;
-import domain.valueobjects.Playerinfo;
+import domain.valueobjects.PlayerInfo;
+import domain.valueobjects.PlayerName;
 import domain.valueobjects.Rating;
 
 public class Player {
-    private final Playerinfo playerinfo;
+    private final PlayerInfo playerInfo;
     private final Rating rating;
     private final TournamentRating tournamentRating;
 
-    public Player(Playerinfo playerinfo, Rating rating, TournamentRating tournamentRating) {
-        this.playerinfo = playerinfo;
+    public Player(PlayerInfo playerInfo, Rating rating, TournamentRating tournamentRating) {
+        this.playerInfo = playerInfo;
         this.rating = rating;
         this.tournamentRating = tournamentRating;
     }
 
-    public Playerinfo getPlayerinfo() {
-        return playerinfo;
+    public String getFullName() {
+        return playerInfo.getName().getFullName();
     }
 
-    public Rating getRating() {
-        return rating;
+    public String getClubName() {
+        return playerInfo.getClubName();
+    }
+
+    public int getEloRating() {
+        return rating.getElo().getRatingNumber();
+    }
+
+    public int getDwzRating() {
+        return rating.getDwz().getRatingNumber();
+    }
+
+    public double getBuchholzScore(){
+        return tournamentRating.getBuchholzScore();
+    }
+
+    public double getSonnebornBergerScore(){
+        return tournamentRating.getSonnebornBergerScore();
     }
 
     public TournamentRating getTournamentRating() {

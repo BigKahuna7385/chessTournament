@@ -1,6 +1,10 @@
-package domain.aggregates;
+package domain.entities;
 
+import domain.aggregates.Player;
 import domain.valueobjects.Result;
+
+import java.util.Objects;
+import java.util.UUID;
 
 public class Game {
 
@@ -8,9 +12,12 @@ public class Game {
     private final Player blackPlayer;
     private Result result;
 
+    private final UUID id;
+
     public Game(Player whitePlayer, Player blackPlayer) {
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
+        id = UUID.randomUUID();
     }
 
     public void setResult(Result result) {
@@ -27,5 +34,18 @@ public class Game {
 
     public Result getResult() {
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return id.equals(game.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

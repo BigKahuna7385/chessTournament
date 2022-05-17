@@ -1,39 +1,38 @@
 package domain.valueobjects;
 
+import domain.exceptions.InvalidRatingException;
+
+import java.util.Objects;
+
 public final class Rating {
-    private final int ELO;
-    private final int DWZ;
+    private final RatingNumber elo;
+    private final RatingNumber dwz;
 
-    public Rating(int ELO, int DWZ) {
-        this.ELO = ELO;
-        this.DWZ = DWZ;
+    public Rating(RatingNumber elo, RatingNumber dwz) throws InvalidRatingException {
+        this.elo = elo;
+        this.dwz = dwz;
+        if (this.dwz == null)
+            throw new InvalidRatingException();
     }
 
-    public int getELO() {
-        return ELO;
+    public RatingNumber getElo() {
+        return elo;
     }
 
-    public int getDWZ() {
-        return DWZ;
+    public RatingNumber getDwz() {
+        return dwz;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rating rating = (Rating) o;
+        return Objects.equals(elo, rating.elo) && dwz.equals(rating.dwz);
     }
 
     @Override
     public int hashCode() {
-        return Integer.getInteger("" + getELO() + getDWZ());
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-
-        if (obj == null)
-            return false;
-
-        if (getClass() != obj.getClass())
-            return false;
-
-        Rating rating = (Rating) obj;
-        return getELO() == rating.getELO() && getDWZ() == rating.getDWZ();
+        return Objects.hash(elo, dwz);
     }
 }

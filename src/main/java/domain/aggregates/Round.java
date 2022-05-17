@@ -1,6 +1,6 @@
 package domain.aggregates;
 
-import domain.aggregates.Game;
+import domain.entities.Game;
 
 public class Round {
 

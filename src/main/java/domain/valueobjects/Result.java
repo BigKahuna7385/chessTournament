@@ -2,53 +2,52 @@ package domain.valueobjects;
 
 import domain.exceptions.InvalidResultException;
 
+import java.util.Objects;
+
 public final class Result {
-    private final boolean WHITEWON;
-    private final boolean BLACKWON;
-    private final boolean DRAW;
+    private final boolean whiteWon;
+    private final boolean blackWon;
+    private final boolean draw;
 
-    public Result(boolean WHITEWON, boolean BLACKWON, boolean DRAW) throws InvalidResultException {
-        this.WHITEWON = WHITEWON;
-        this.BLACKWON = BLACKWON;
-        this.DRAW = DRAW;
-        int cnt = 0;
-        boolean[] booleans = {WHITEWON,BLACKWON,DRAW};
-        for (Boolean b : booleans)
-           if (b) cnt++;
 
-        if (cnt != 1)
+    public Result(boolean whiteWon, boolean blackWon, boolean draw) throws InvalidResultException {
+        this.whiteWon = whiteWon;
+        this.blackWon = blackWon;
+        this.draw = draw;
+
+        if (!checkThatOnlyOneIsTrue())
             throw new InvalidResultException();
+
+    }
+
+    public boolean checkThatOnlyOneIsTrue(){
+        return ((whiteWon ? 1 : 0) + (blackWon ? 1 : 0) + (draw ? 1 : 0)) == 1;
     }
 
     public boolean whiteHasWon() {
-        return WHITEWON;
+        return whiteWon;
     }
 
     public boolean blackHasWon() {
-        return BLACKWON;
+        return blackWon;
     }
 
     public boolean isDraw() {
-        return DRAW;
+        return draw;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Result result = (Result) o;
+        return whiteWon == result.whiteWon && blackWon == result.blackWon && draw == result.draw;
     }
 
     @Override
     public int hashCode() {
-        return Integer.getInteger("" + (whiteHasWon() ? 1 : 0) + (blackHasWon() ? 1 : 0) + (isDraw() ? 1 : 0));
+        return Objects.hash(whiteWon, blackWon, draw);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-
-        if (obj == null)
-            return false;
-
-        if (getClass() != obj.getClass())
-            return false;
-
-        Result result = (Result) obj;
-        return isDraw() == result.isDraw() && blackHasWon() == result.blackHasWon() && whiteHasWon() == result.whiteHasWon();
-    }
 }
+

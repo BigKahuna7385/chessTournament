@@ -2,7 +2,9 @@ package domain.valueobjects;
 
 import domain.exceptions.InvalidRatingNumberException;
 
-public class RatingNumber {
+import java.util.Objects;
+
+public final class RatingNumber {
 
     private final int ratingNumber;
 
@@ -14,5 +16,18 @@ public class RatingNumber {
 
     public int getRatingNumber() {
         return ratingNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RatingNumber that = (RatingNumber) o;
+        return ratingNumber == that.ratingNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ratingNumber);
     }
 }

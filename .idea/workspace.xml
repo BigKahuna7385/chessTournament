@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added remaining hashcode functions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidRatingNumberException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidResultException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" afterDir="false" />
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added checks to value objects and added exceptions">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidListNumberException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidPlayerInfoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidPlayerNameExeption.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidRatingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/ListNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerName.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/TournamentRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/entities/TournamentRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="domain.exceptions" />
@@ -58,7 +67,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1652709331113</updated>
-      <workItem from="1652709332862" duration="6565000" />
+      <workItem from="1652709332862" duration="6638000" />
+      <workItem from="1652772083218" duration="4380000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -81,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652715193075</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added checks to value objects and added exceptions">
+      <created>1652716535812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652716535812</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +119,7 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="restructured project and added most of the equals and hash functions for value objects." />
     <MESSAGE value="added remaining hashcode functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added remaining hashcode functions" />
+    <MESSAGE value="added checks to value objects and added exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="added checks to value objects and added exceptions" />
   </component>
 </project>
