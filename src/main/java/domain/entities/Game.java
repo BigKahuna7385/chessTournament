@@ -12,12 +12,12 @@ public class Game {
     private final Player blackPlayer;
     private Result result;
 
-    private final UUID id;
+    private final String uuid;
 
     public Game(Player whitePlayer, Player blackPlayer) {
         this.whitePlayer = whitePlayer;
         this.blackPlayer = blackPlayer;
-        id = UUID.randomUUID();
+        uuid = UUID.randomUUID().toString();
     }
 
     public void setResult(Result result) {
@@ -41,11 +41,11 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return id.equals(game.id);
+        return uuid.equals(game.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(uuid);
     }
 }

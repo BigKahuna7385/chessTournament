@@ -8,12 +8,12 @@ public class TournamentRating {
     private double buchholzScore;
     private double sonnebornBergerScore;
 
-    private final UUID id;
+    private final String uuid;
 
     public TournamentRating(double buchholzScore, double sonnebornBergerScore) {
         this.buchholzScore = buchholzScore;
         this.sonnebornBergerScore = sonnebornBergerScore;
-        this.id = UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public double getBuchholzScore() {
@@ -37,11 +37,11 @@ public class TournamentRating {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TournamentRating that = (TournamentRating) o;
-        return id.equals(that.id);
+        return uuid.equals(that.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(uuid);
     }
 }

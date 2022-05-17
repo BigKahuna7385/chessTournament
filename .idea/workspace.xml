@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added checks to value objects and added exceptions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidListNumberException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidPlayerInfoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidPlayerNameExeption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/exceptions/InvalidRatingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/ListNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerName.java" afterDir="false" />
+    <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added missing exceptions with value object validations&#10;reworked equals and hashCode functions of value objects with IntelliJ code generation&#10;implemented aggregate functions&#10;moved game from entities to aggregates">
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/PlayerRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/RoundRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/domain/repositories/TournamentRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/aggregates/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/aggregates/Round.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/entities/Round.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/aggregates/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/entities/Tournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/entities/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/domain/entities/TournamentRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/entities/TournamentRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Name.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Playerinfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/PlayerInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/RatingNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/valueobjects/Result.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -68,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652709331113</updated>
       <workItem from="1652709332862" duration="6638000" />
-      <workItem from="1652772083218" duration="4380000" />
+      <workItem from="1652772083218" duration="8523000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -98,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652716535812</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added missing exceptions with value object validations&#10;reworked equals and hashCode functions of value objects with IntelliJ code generation&#10;implemented aggregate functions&#10;moved game from entities to aggregates">
+      <created>1652778902908</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652778902909</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +125,7 @@
     <MESSAGE value="restructured project and added most of the equals and hash functions for value objects." />
     <MESSAGE value="added remaining hashcode functions" />
     <MESSAGE value="added checks to value objects and added exceptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added checks to value objects and added exceptions" />
+    <MESSAGE value="added missing exceptions with value object validations&#10;reworked equals and hashCode functions of value objects with IntelliJ code generation&#10;implemented aggregate functions&#10;moved game from entities to aggregates" />
+    <option name="LAST_COMMIT_MESSAGE" value="added missing exceptions with value object validations&#10;reworked equals and hashCode functions of value objects with IntelliJ code generation&#10;implemented aggregate functions&#10;moved game from entities to aggregates" />
   </component>
 </project>
