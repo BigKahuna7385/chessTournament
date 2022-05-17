@@ -19,18 +19,18 @@ public class RoundRepositoryImpl implements RoundRepository {
     }
 
     @Override
-    public void Remove(Game game) {
+    public void remove(Game game) {
         gameList.remove(game);
     }
 
     @Override
-    public void Update(Game game) {
+    public void update(Game game) {
         gameList.remove(game);
         gameList.add(game);
     }
 
     @Override
-    public List<Game> List() {
+    public List<Game> list() {
         return gameList;
     }
 }

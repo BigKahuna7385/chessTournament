@@ -1,6 +1,7 @@
 package domain.valueobjects;
 
 import domain.exceptions.InvalidPlayerInfoException;
+import domain.factories.PlayerInfoFactory;
 
 import java.util.Objects;
 
@@ -28,6 +29,10 @@ public final class PlayerInfo {
 
     public ListNumber getListNumber() {
         return listNumber;
+    }
+
+    public static PlayerInfoFactory builder(){
+        return new PlayerInfoFactory();
     }
 
     @Override

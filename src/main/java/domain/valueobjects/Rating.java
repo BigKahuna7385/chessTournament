@@ -1,6 +1,7 @@
 package domain.valueobjects;
 
 import domain.exceptions.InvalidRatingException;
+import domain.factories.RatingFactory;
 
 import java.util.Objects;
 
@@ -13,6 +14,10 @@ public final class Rating {
         this.dwz = dwz;
         if (this.dwz == null)
             throw new InvalidRatingException();
+    }
+
+    public static RatingFactory builder(){
+        return new RatingFactory();
     }
 
     public RatingNumber getElo() {

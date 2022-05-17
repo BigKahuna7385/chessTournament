@@ -19,18 +19,18 @@ public class TournamentRepositoryImpl implements TournamentRepository {
     }
 
     @Override
-    public void Remove(Round round) {
+    public void remove(Round round) {
         roundList.remove(round);
     }
 
     @Override
-    public void Update(Round round) {
+    public void update(Round round) {
         roundList.remove(round);
         roundList.add(round);
     }
 
     @Override
-    public List<Round> List() {
+    public List<Round> list() {
         return roundList;
     }
 }

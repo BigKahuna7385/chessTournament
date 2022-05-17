@@ -10,10 +10,10 @@ public interface RoundRepository {
 
     void add(Game game);
 
-    void Remove(Game game);
+    void remove(Game game);
 
-    void Update(Game game);
+    void update(Game game);
 
-    List<Game> List();
+    List<Game> list();
 
 }

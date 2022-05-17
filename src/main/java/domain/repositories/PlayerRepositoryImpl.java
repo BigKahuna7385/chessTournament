@@ -13,25 +13,31 @@ public class PlayerRepositoryImpl implements PlayerRepository {
         this.playerList = new ArrayList<>();
     }
 
-
     @Override
     public void add(Player player) {
         playerList.add(player);
     }
 
     @Override
-    public void Remove(Player player) {
+    public void remove(Player player) {
         playerList.remove(player);
     }
 
     @Override
-    public void Update(Player player) {
+    public void update(Player player) {
         playerList.remove(player);
         playerList.add(player);
     }
 
+
+
     @Override
-    public List<Player> List() {
+    public List<Player> list() {
         return playerList;
+    }
+
+    @Override
+    public boolean contains(Player player) {
+        return playerList.contains(player);
     }
 }

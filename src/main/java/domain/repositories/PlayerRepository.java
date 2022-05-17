@@ -7,8 +7,10 @@ import java.util.List;
 public interface PlayerRepository {
 
     void add(Player player);
-    void Remove(Player player);
-    void Update(Player player);
-    List<Player> List();
+    void remove(Player player);
+    void update(Player player);
+    List<Player> list();
+
+    boolean contains(Player player);
 
 }

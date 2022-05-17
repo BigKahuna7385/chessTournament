@@ -10,9 +10,9 @@ public interface TournamentRepository {
 
     void add(Round round);
 
-    void Remove(Round round);
+    void remove(Round round);
 
-    void Update(Round round);
+    void update(Round round);
 
-    List<Round> List();
+    List<Round> list();
 }
