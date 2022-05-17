@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53c1e15c-6da4-4d67-bdfb-29034fd02b1f" name="Changes" comment="added factories for player, ratings and playerinfo.">
+      <change afterPath="$PROJECT_DIR$/src/main/test/usecases/CreatePlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ChessTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ChessTournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/usecases/CreatePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecases/CreatePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +50,62 @@
       <recent name="domain.exceptions" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ChessTournament">
     <configuration name="ChessTournament" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChessTournament" />
       <module name="chessTournament" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CreatePlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chessTournament" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecases" />
+      <option name="MAIN_CLASS_NAME" value="usecases.CreatePlayerTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreatePlayerTest.createPlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="chessTournament" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecases" />
+      <option name="MAIN_CLASS_NAME" value="usecases.CreatePlayerTest" />
+      <option name="METHOD_NAME" value="createPlayerTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ChessTournament" />
+      <item itemvalue="JUnit.CreatePlayerTest" />
+      <item itemvalue="JUnit.CreatePlayerTest.createPlayerTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChessTournament" />
+        <item itemvalue="JUnit.CreatePlayerTest.createPlayerTest" />
+        <item itemvalue="JUnit.CreatePlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -74,7 +119,7 @@
       <updated>1652709331113</updated>
       <workItem from="1652709332862" duration="6638000" />
       <workItem from="1652772083218" duration="10170000" />
-      <workItem from="1652796712483" duration="5346000" />
+      <workItem from="1652796712483" duration="6434000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1652712268860</created>
@@ -125,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652800019580</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added factories for player, ratings and playerinfo.">
+      <created>1652802466916</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1652802466916</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
