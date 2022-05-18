@@ -11,7 +11,7 @@ public class ChessTournament {
         CreatePlayer createPlayer = new CreatePlayer(playerRepository);
         try {
             createPlayer.create(Player.builder()
-                    .playerInfo("Daniel",null,"SC Oberhausen-Rheinhausen",12)
+                    .playerInfo("Daniel","Burger","SC Oberhausen-Rheinhausen",12)
                     .rating(null,1448)
                     .build());
         } catch (PlayerAlreadyRegistered | InvalidListNumberException | InvalidPlayerInfoException |
