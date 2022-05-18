@@ -77,6 +77,6 @@ public class PlayerFactory {
     }
 
     public Player build() {
-        return new Player(playerInfo, rating, new TournamentRating(0, 0));
+        return new Player(playerInfo, rating);
     }
 }

@@ -12,10 +12,10 @@ public class PlayerInfoTest {
     @Test
     void invalidPlayerInfo(){
         try{
-           PlayerInfo.builder().clubName(null).playerName(null).listNumber(null).build();
+            PlayerInfo.builder().clubName(null).playerName(null).listNumber(null).build();
             fail("Expected InvalidPlayerInfoException to be thrown");
         } catch (InvalidPlayerInfoException exception) {
-           assertThat(exception.getMessage().equals("Invalid player info"));
+            assertThat(exception.getMessage().equals("Invalid player info"));
         }
 
         try{

@@ -27,6 +27,7 @@ public class Player {
         return tournamentRating;
     }
 
+
     public void setTournamentRating(TournamentRating tournamentRating) {
         this.tournamentRating = tournamentRating;
     }

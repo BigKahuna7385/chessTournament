@@ -1,12 +1,13 @@
 package Player;
 
+
 import exceptions.InvalidListNumberException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ListNumberTest {
+class ListNumberTest {
 
     @Test
     void createInvalidListNumber(){

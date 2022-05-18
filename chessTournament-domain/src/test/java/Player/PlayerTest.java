@@ -17,7 +17,7 @@ public class PlayerTest {
                 () -> assertEquals("Burger, Daniel", player.getFullName()),
                 () -> assertEquals("Daniel", player.getPlayerInfo().getName().getFirstName()),
                 () -> assertEquals("Burger", player.getPlayerInfo().getName().getLastName()),
-                () -> assertEquals("SF Oberhausen-Rheinhausen", player.getClubName()),
+                () -> assertEquals("SF Oberhausen-Rheinhausen", player.getPlayerInfo().getClubName()),
                 () -> assertEquals(12, player.getPlayerInfo().getListNumber().getListNumber()));
     }
 
@@ -32,14 +32,14 @@ public class PlayerTest {
 
     @Test
     void invalidPlayerName() {
-       try {
-           Player.builder().playerInfo("Daniel", null, "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-       } catch (InvalidRatingException | InvalidRatingNumberException | InvalidPlayerInfoException |
-                InvalidListNumberException e) {
-           throw new RuntimeException(e);
-       } catch (InvalidPlayerNameExeption exeption) {
-           assertThat(exeption.getMessage().equals("Invalid player name"));
-       }
+        try {
+            Player.builder().playerInfo("Daniel", null, "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
+        } catch (InvalidRatingException | InvalidRatingNumberException | InvalidPlayerInfoException |
+                 InvalidListNumberException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidPlayerNameExeption exeption) {
+            assertThat(exeption.getMessage().equals("Invalid player name"));
+        }
     }
 
 

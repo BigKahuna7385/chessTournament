@@ -32,9 +32,6 @@ public class TournamentRatingCalculator {
     }
 
     private void calculateBuchholzScore() {
-
-
     }
-
 
 }

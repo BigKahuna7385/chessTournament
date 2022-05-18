@@ -1,11 +1,13 @@
 package Game;
+
 import Player.Player;
 import exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GameTest {
+class GameTest {
+
 
     @Test
     void createGame() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException {
@@ -70,6 +72,5 @@ public class GameTest {
         game2.setResult(chessResult2);
         assertEquals(game1.getResult(), game2.getResult());
     }
-
 
 }
