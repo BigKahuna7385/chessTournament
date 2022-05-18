@@ -1,4 +1,7 @@
 package usecases.exceptions;
 
-public class PlayerAlreadyRegistered extends Throwable {
+public class PlayerAlreadyRegistered extends Exception {
+    public PlayerAlreadyRegistered() {
+        super("Player is already registered");
+    }
 }

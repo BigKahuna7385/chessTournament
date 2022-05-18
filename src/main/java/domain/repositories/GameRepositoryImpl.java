@@ -5,11 +5,11 @@ import domain.entities.Game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoundRepositoryImpl implements RoundRepository {
+public class GameRepositoryImpl implements GameRepository {
 
     private final List<Game> gameList;
 
-    public RoundRepositoryImpl() {
+    public GameRepositoryImpl() {
         gameList = new ArrayList<>();
     }
 
@@ -32,5 +32,10 @@ public class RoundRepositoryImpl implements RoundRepository {
     @Override
     public List<Game> list() {
         return gameList;
+    }
+
+    @Override
+    public boolean contains(Game game) {
+        return gameList.contains(game);
     }
 }

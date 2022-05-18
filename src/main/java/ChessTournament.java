@@ -1,16 +1,16 @@
 import domain.aggregates.Player;
 import domain.exceptions.*;
 import domain.repositories.PlayerRepositoryImpl;
-import usecases.CreatePlayer;
+import usecases.AddPlayer;
 import usecases.exceptions.PlayerAlreadyRegistered;
 
 public class ChessTournament {
 
     public static void main(String[] args) {
         PlayerRepositoryImpl playerRepository = new PlayerRepositoryImpl();
-        CreatePlayer createPlayer = new CreatePlayer(playerRepository);
+        AddPlayer createPlayer = new AddPlayer(playerRepository);
         try {
-            createPlayer.create(Player.builder()
+            createPlayer.addPlayer(Player.builder()
                     .playerInfo("Daniel","Burger","SC Oberhausen-Rheinhausen",12)
                     .rating(null,1448)
                     .build());

@@ -20,11 +20,11 @@ public final class Result {
 
     }
 
-    public boolean isWhiteWon() {
+    public boolean hasWhiteWon() {
         return whiteWon;
     }
 
-    public boolean isBlackWon() {
+    public boolean hasBlackWon() {
         return blackWon;
     }
 

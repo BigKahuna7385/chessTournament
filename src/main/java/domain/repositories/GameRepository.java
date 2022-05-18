@@ -6,7 +6,7 @@ import domain.entities.Game;
 
 import java.util.List;
 
-public interface RoundRepository {
+public interface GameRepository {
 
     void add(Game game);
 
@@ -15,5 +15,7 @@ public interface RoundRepository {
     void update(Game game);
 
     List<Game> list();
+
+    boolean contains(Game game);
 
 }
