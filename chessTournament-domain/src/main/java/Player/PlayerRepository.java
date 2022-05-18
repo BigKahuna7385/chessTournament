@@ -12,6 +12,8 @@ public interface PlayerRepository {
 
     List<Player> list();
 
+    List<Player> listSortedByRanking();
+
     boolean contains(Player player);
 
 }

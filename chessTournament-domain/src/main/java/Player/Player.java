@@ -1,44 +1,34 @@
 package Player;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Player {
     private final PlayerInfo playerInfo;
     private final Rating rating;
-    private final TournamentRating tournamentRating;
+    private TournamentRating tournamentRating;
+    private final String uuid;
 
-    public Player(PlayerInfo playerInfo, Rating rating, TournamentRating tournamentRating) {
+    public Player(PlayerInfo playerInfo, Rating rating) {
         this.playerInfo = playerInfo;
         this.rating = rating;
-        this.tournamentRating = tournamentRating;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public String getFullName() {
         return playerInfo.getName().getFullName();
     }
 
-    public String getClubName() {
-        return playerInfo.getClubName();
-    }
-
-    public int getEloRating() {
-        return rating.getElo().getRatingNumber();
-    }
-
-    public int getDwzRating() {
-        return rating.getDwz().getRatingNumber();
-    }
-
-    public double getBuchholzScore() {
-        return tournamentRating.getBuchholzScore();
-    }
-
-    public double getSonnebornBergerScore() {
-        return tournamentRating.getSonnebornBergerScore();
+    public String getUuid() {
+        return uuid;
     }
 
     public TournamentRating getTournamentRating() {
         return tournamentRating;
+    }
+
+    public void setTournamentRating(TournamentRating tournamentRating) {
+        this.tournamentRating = tournamentRating;
     }
 
     public static PlayerFactory builder() {

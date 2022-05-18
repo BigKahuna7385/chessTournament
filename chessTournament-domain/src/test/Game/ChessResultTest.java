@@ -6,40 +6,40 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ResultTest {
+public class ChessResultTest {
 
     @Test
     void invalidResultTest() {
         try {
-            new Result(true, true, true);
+            new ChessResult(true, true, true);
             fail("Expected a InvalidResultException to be thrown");
         } catch (InvalidResultException exception) {
             assertThat(exception.getMessage().equals("Invalid result"));
         }
 
         try {
-            new Result(true, true, false);
+            new ChessResult(true, true, false);
             fail("Expected a InvalidResultException to be thrown");
         } catch (InvalidResultException exception) {
             assertThat(exception.getMessage().equals("Invalid result"));
         }
 
         try {
-            new Result(true, false, true);
+            new ChessResult(true, false, true);
             fail("Expected a InvalidResultException to be thrown");
         } catch (InvalidResultException exception) {
             assertThat(exception.getMessage().equals("Invalid result"));
         }
 
         try {
-            new Result(false, true, true);
+            new ChessResult(false, true, true);
             fail("Expected a InvalidResultException to be thrown");
         } catch (InvalidResultException exception) {
             assertThat(exception.getMessage().equals("Invalid result"));
         }
 
         try {
-            new Result(false, false, false);
+            new ChessResult(false, false, false);
             fail("Expected a InvalidResultException to be thrown");
         } catch (InvalidResultException exception) {
             assertThat(exception.getMessage().equals("Invalid result"));

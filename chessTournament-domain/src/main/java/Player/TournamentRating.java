@@ -32,6 +32,10 @@ public class TournamentRating {
         this.sonnebornBergerScore = sonnebornBergerScore;
     }
 
+    public static TournamentRatingCalculator calculateTournamentRating() {
+        return new TournamentRatingCalculator();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

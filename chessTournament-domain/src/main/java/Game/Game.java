@@ -9,7 +9,7 @@ public class Game {
 
     private final Player whitePlayer;
     private final Player blackPlayer;
-    private Result result;
+    private ChessResult chessResult;
 
     private final String uuid;
 
@@ -19,8 +19,8 @@ public class Game {
         uuid = UUID.randomUUID().toString();
     }
 
-    public void setResult(Result result) {
-        this.result = result;
+    public void setResult(ChessResult chessResult) {
+        this.chessResult = chessResult;
     }
 
     public Player getWhitePlayer() {
@@ -31,8 +31,8 @@ public class Game {
         return blackPlayer;
     }
 
-    public Result getResult() {
-        return result;
+    public ChessResult getResult() {
+        return chessResult;
     }
 
     @Override

@@ -4,13 +4,13 @@ import exceptions.InvalidResultException;
 
 import java.util.Objects;
 
-public final class Result {
+public final class ChessResult {
     final boolean whiteWon;
     final boolean blackWon;
     final boolean draw;
 
 
-    public Result(boolean whiteWon, boolean blackWon, boolean draw) throws InvalidResultException {
+    public ChessResult(boolean whiteWon, boolean blackWon, boolean draw) throws InvalidResultException {
         this.whiteWon = whiteWon;
         this.blackWon = blackWon;
         this.draw = draw;
@@ -40,8 +40,8 @@ public final class Result {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Result result = (Result) o;
-        return whiteWon == result.whiteWon && blackWon == result.blackWon && draw == result.draw;
+        ChessResult chessResult = (ChessResult) o;
+        return whiteWon == chessResult.whiteWon && blackWon == chessResult.blackWon && draw == chessResult.draw;
     }
 
     @Override
