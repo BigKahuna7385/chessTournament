@@ -5,72 +5,41 @@ import exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class GameTest {
 
-
     @Test
-    void createGame() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException {
-        Player whitePlayer = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player blackPlayer = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game = new Game(whitePlayer,blackPlayer);
+    void createGame() {
+        Player whitePlayer = mock(Player.class);
+        Player blackPlayer = mock(Player.class);
+        Game game = new Game(whitePlayer, blackPlayer);
 
         assertAll("game",
-                ()-> assertEquals(whitePlayer, game.getWhitePlayer()),
-                ()-> assertEquals(blackPlayer, game.getBlackPlayer()),
-                ()-> assertEquals(null, game.getResult()));
+                () -> assertEquals(whitePlayer, game.getWhitePlayer()),
+                () -> assertEquals(blackPlayer, game.getBlackPlayer()),
+                () -> assertNull(game.getResult()));
     }
 
     @Test
-    void compareGames() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException {
-        Player whitePlayer = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player blackPlayer = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game1 = new Game(whitePlayer,blackPlayer);
-        Game game2 = new Game(whitePlayer,blackPlayer);
-        assertNotEquals(game1,game2);
+    void compareGames() {
+        Player whitePlayer = mock(Player.class);
+        Player blackPlayer = mock(Player.class);
+        Game game1 = new Game(whitePlayer, blackPlayer);
+        Game game2 = new Game(whitePlayer, blackPlayer);
+        assertNotEquals(game1, game2);
     }
 
     @Test
-    void addWhiteWonResult() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException, InvalidResultException {
-        Player whitePlayer = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player blackPlayer = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game = new Game(whitePlayer,blackPlayer);
-        ChessResult chessResult = new ChessResult(true,false,false);
+    void addResult()  {
+        Player whitePlayer = mock(Player.class);
+        Player blackPlayer = mock(Player.class);
+        Game game = new Game(whitePlayer, blackPlayer);
+        ChessResult chessResult = mock(ChessResult.class);
+        assert (game.getResult() == null);
         game.setResult(chessResult);
-        assert(game.getResult().hasWhiteWon());
-    }
-
-    @Test
-    void addBLackWonResult() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException, InvalidResultException {
-        Player whitePlayer = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player blackPlayer = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game = new Game(whitePlayer,blackPlayer);
-        ChessResult chessResult = new ChessResult(false,true,false);
-        game.setResult(chessResult);
-        assert(game.getResult().hasBlackWon());
-    }
-
-    @Test
-    void addDrawnResult() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException, InvalidResultException {
-        Player whitePlayer = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player blackPlayer = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game = new Game(whitePlayer,blackPlayer);
-        ChessResult chessResult = new ChessResult(false,false,true);
-        game.setResult(chessResult);
-        assert(game.getResult().isDraw());
-    }
-
-    @Test
-    void checkTwoGamesWithSameResult() throws InvalidListNumberException, InvalidPlayerInfoException, InvalidPlayerNameExeption, InvalidRatingNumberException, InvalidRatingException, InvalidResultException {
-        Player Player1 = Player.builder().playerInfo("Daniel", "Burger", "SF Oberhausen-Rheinhausen", 12).rating(null, 1448).build();
-        Player Player2 = Player.builder().playerInfo("Denis", "Graf", "SF Neureut 1953 e.V.", 45).rating(null, 1248).build();
-        Game game1 = new Game(Player1,Player2);
-        ChessResult chessResult1 = new ChessResult(true,false,false);
-        game1.setResult(chessResult1);
-        Game game2 = new Game(Player2,Player1);
-        ChessResult chessResult2 = new ChessResult(true,false,false);
-        game2.setResult(chessResult2);
-        assertEquals(game1.getResult(), game2.getResult());
+        assert (game.getResult() != null);
     }
 
 }

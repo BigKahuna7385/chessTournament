@@ -1,9 +1,7 @@
 package Player;
 
-import Game.ChessResult;
 import Game.Game;
 
-import java.util.Comparator;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -43,8 +41,8 @@ public class Player implements Comparable<Player> {
         return new PlayerFactory();
     }
 
-    public void addScore(Game game) {
-        if (game.getResult().isDraw()) {
+    public void addScoreFrom(Game game) {
+        if (game.getResult().isDrawn()) {
             score = score + 0.5d;
         } else if (game.getWhitePlayer() == this && game.getResult().hasWhiteWon()) {
             score = score + 1.0d;
@@ -63,7 +61,7 @@ public class Player implements Comparable<Player> {
     }
 
     public boolean hasDrawn(Game game) {
-        if (game.getBlackPlayer() == this || game.getWhitePlayer() == this) return game.getResult().isDraw();
+        if (game.getBlackPlayer() == this || game.getWhitePlayer() == this) return game.getResult().isDrawn();
         return false;
     }
 

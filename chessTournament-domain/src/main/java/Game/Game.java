@@ -21,8 +21,8 @@ public class Game {
 
     public void setResult(ChessResult chessResult) {
         this.chessResult = chessResult;
-        whitePlayer.addScore(this);
-        blackPlayer.addScore(this);
+        whitePlayer.addScoreFrom(this);
+        blackPlayer.addScoreFrom(this);
     }
 
     public Player getWhitePlayer() {

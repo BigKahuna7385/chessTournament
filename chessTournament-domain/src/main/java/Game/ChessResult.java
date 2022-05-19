@@ -28,7 +28,7 @@ public final class ChessResult {
         return blackWon;
     }
 
-    public boolean isDraw() {
+    public boolean isDrawn() {
         return draw;
     }
 
