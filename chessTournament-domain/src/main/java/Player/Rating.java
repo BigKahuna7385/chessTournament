@@ -1,6 +1,7 @@
 package Player;
 
 import exceptions.InvalidRatingException;
+import exceptions.InvalidRatingNumberException;
 
 import java.util.Objects;
 
@@ -13,6 +14,11 @@ public final class Rating {
         this.dwz = dwz;
         if (this.dwz == null)
             throw new InvalidRatingException();
+    }
+
+    public Rating(int elo, int dwz) throws InvalidRatingNumberException {
+        this.elo = new RatingNumber(elo);
+        this.dwz = new RatingNumber(dwz);
     }
 
     public RatingNumber getElo() {

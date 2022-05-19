@@ -30,4 +30,6 @@ public final class RatingNumber {
     public int hashCode() {
         return Objects.hash(ratingNumber);
     }
+
+
 }

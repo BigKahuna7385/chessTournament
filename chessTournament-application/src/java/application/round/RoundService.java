@@ -54,7 +54,7 @@ public class RoundService {
 
     private void calculateRatingNumberFor(Player player) {
         Game[] games = gameService.getAllGamesOf(player);
-        player.setTournamentRating(TournamentRating.calculateTournamentRating().player(player).games(games).build());
+        player.setTournamentRating(TournamentRating.calculateTournamentRating().player(player).games(games).calculate());
     }
 
     private boolean currentRoundReady() {

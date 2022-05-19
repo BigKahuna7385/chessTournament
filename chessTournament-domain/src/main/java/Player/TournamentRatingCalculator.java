@@ -7,31 +7,26 @@ public class TournamentRatingCalculator {
     private Game[] games;
     private Player player;
 
-    private double buchholzScore;
-    private double sonnebornBergerScore;
-        public TournamentRatingCalculator() {
+    private final BuchholzScore buchholzScore;
+    private final SonnebornBergerScore sonnebornBergerScore;
+
+    public TournamentRatingCalculator() {
+        this.buchholzScore = new BuchholzScore();
+        this.sonnebornBergerScore = new SonnebornBergerScore();
     }
 
-    public TournamentRatingCalculator games(Game[] games){
-            this.games = games;
-            return this;
+    public TournamentRatingCalculator games(Game[] games) {
+        this.games = games;
+        return this;
     }
 
-    public TournamentRatingCalculator player(Player player){
+    public TournamentRatingCalculator player(Player player) {
         this.player = player;
         return this;
     }
 
-    public TournamentRating build(){
-            calculateBuchholzScore();
-            calculateSonnebornScore();
-            return new TournamentRating(buchholzScore,sonnebornBergerScore);
-    }
-
-    private void calculateSonnebornScore() {
-    }
-
-    private void calculateBuchholzScore() {
+    public TournamentRating calculate() {
+        return new TournamentRating(buchholzScore.calculateBuchholzScoreWith(games, player), sonnebornBergerScore.calculateSonnebornBergerScoreWith(games, player));
     }
 
 }

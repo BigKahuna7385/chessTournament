@@ -31,7 +31,7 @@ public class PlayerService {
     }
 
     public TournamentRating calculateTournamentRatingFor(Player player) {
-        return TournamentRating.calculateTournamentRating().player(player).games(gameService.getAllGamesOf(player)).build();
+        return TournamentRating.calculateTournamentRating().player(player).games(gameService.getAllGamesOf(player)).calculate();
     }
 
     public Object[] findPlayerByName(String searchTerm) {
