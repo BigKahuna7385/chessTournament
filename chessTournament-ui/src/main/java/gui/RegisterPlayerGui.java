@@ -2,6 +2,7 @@ package gui;
 
 import application.Tournament;
 import application.exceptions.PlayerAlreadyRegistered;
+import exceptions.*;
 import transport.PlayerUiModel;
 import transport.PlayerUiModelToPlayerMapper;
 
@@ -16,7 +17,6 @@ import java.util.Locale;
 public class RegisterPlayerGui extends JFrame {
 
     private final Tournament tournament;
-    private final TournamentGui tournamentGui;
     private final PlayerUiModelToPlayerMapper playerUiModelToPlayerMapper;
     private JTextField firstNameInput;
     private JTextField lastNameInput;
@@ -26,14 +26,19 @@ public class RegisterPlayerGui extends JFrame {
     private JTextField dwzInput;
     private JButton cancelButton;
     private JButton registerButton;
+    private JPanel registerPlayerPanel;
+
+    private final TournamentGui tournamentGui;
 
     public RegisterPlayerGui(Tournament tournament, TournamentGui tournamentGui) {
+        setContentPane(registerPlayerPanel);
         this.tournament = tournament;
         this.tournamentGui = tournamentGui;
         playerUiModelToPlayerMapper = new PlayerUiModelToPlayerMapper();
-        setTitle("Register Player");
         setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocation(tournamentGui.getX() + 70, tournamentGui.getY() + 30);
+        setTitle("Register Player");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
         this.addWindowListener(new WindowAdapter() {
@@ -53,17 +58,55 @@ public class RegisterPlayerGui extends JFrame {
         String firstName = firstNameInput.getText();
         String lastName = lastNameInput.getText();
         String clubName = clubInput.getText();
-        int elo = Integer.getInteger(eloInput.getText());
-        int dwz = Integer.getInteger(dwzInput.getText());
+        int listNumber;
+        try {
+            listNumber = Integer.parseInt(listNumberInput.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Not a valid Number in Listnumber-field");
+            return;
+        }
+        int elo;
+        try {
+            elo = Integer.parseInt(eloInput.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Not a valid Number in ELO-field");
+            return;
+        }
 
-        PlayerUiModel newPlayer = new PlayerUiModel(firstName, lastName, clubName, elo, dwz);
+        int dwz;
+        try {
+            dwz = Integer.parseInt(dwzInput.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Not a valid Number in DWZ-field");
+            return;
+        }
+
+        PlayerUiModel newPlayer = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz);
 
         try {
-            tournament.getPlayerService().createNewPlayer(playerUiModelToPlayerMapper.apply(newPlayer));
+            try {
+                tournament.getPlayerService().createNewPlayer(playerUiModelToPlayerMapper.apply(newPlayer));
+            } catch (InvalidListNumberException e) {
+                JOptionPane.showMessageDialog(null, "Listnumber must be integer larger than zero");
+                return;
+            } catch (InvalidRatingNumberException e) {
+                JOptionPane.showMessageDialog(null, "Ratingnumber must be integer larger than zero");
+                return;
+            } catch (InvalidPlayerInfoException e) {
+                JOptionPane.showMessageDialog(null, "There was an error in the player infos");
+                return;
+            } catch (InvalidPlayerNameExeption e) {
+                JOptionPane.showMessageDialog(null, "Invalid player name");
+                return;
+            } catch (InvalidRatingException e) {
+                JOptionPane.showMessageDialog(null, "The DWZ field must be filled");
+                return;
+            }
         } catch (PlayerAlreadyRegistered e) {
             JOptionPane.showMessageDialog(null, "This player has already been registered");
         }
-
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        tournamentGui.refreshPlayerList();
     }
 
 
@@ -82,53 +125,154 @@ public class RegisterPlayerGui extends JFrame {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(7, 11, new Insets(0, 0, 0, 0), -1, -1));
+        registerPlayerPanel = new JPanel();
+        registerPlayerPanel.setLayout(new GridBagLayout());
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$(null, -1, 24, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Register player");
-        panel1.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 10, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTH, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridwidth = 10;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        registerPlayerPanel.add(label1, gbc);
         final JLabel label2 = new JLabel();
         label2.setText("Club");
-        panel1.add(label2, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPlayerPanel.add(label2, gbc);
         clubInput = new JTextField();
         clubInput.setText("");
-        panel1.add(clubInput, new com.intellij.uiDesigner.core.GridConstraints(3, 1, 1, 10, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridwidth = 10;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(clubInput, gbc);
         lastNameInput = new JTextField();
-        panel1.add(lastNameInput, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 1, 10, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 10;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(lastNameInput, gbc);
         final JLabel label3 = new JLabel();
         label3.setText("Lastname:");
-        panel1.add(label3, new com.intellij.uiDesigner.core.GridConstraints(2, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPlayerPanel.add(label3, gbc);
         final JLabel label4 = new JLabel();
         label4.setText("Firstname:");
-        panel1.add(label4, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        registerPlayerPanel.add(label4, gbc);
         firstNameInput = new JTextField();
-        panel1.add(firstNameInput, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 10, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 10;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(firstNameInput, gbc);
         final JLabel label5 = new JLabel();
         label5.setText("Listnumber");
-        panel1.add(label5, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPlayerPanel.add(label5, gbc);
         listNumberInput = new JTextField();
-        panel1.add(listNumberInput, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 10, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.gridwidth = 10;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(listNumberInput, gbc);
         final JLabel label6 = new JLabel();
         label6.setText("ELO");
-        panel1.add(label6, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPlayerPanel.add(label6, gbc);
         cancelButton = new JButton();
         cancelButton.setBackground(new Color(-10027008));
         cancelButton.setText("Cancel");
-        panel1.add(cancelButton, new com.intellij.uiDesigner.core.GridConstraints(6, 4, 1, 7, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 4;
+        gbc.gridy = 6;
+        gbc.gridwidth = 7;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        registerPlayerPanel.add(cancelButton, gbc);
         registerButton = new JButton();
         registerButton.setBackground(new Color(-15449831));
         registerButton.setText("Register");
-        panel1.add(registerButton, new com.intellij.uiDesigner.core.GridConstraints(6, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        registerPlayerPanel.add(registerButton, gbc);
         eloInput = new JTextField();
-        panel1.add(eloInput, new com.intellij.uiDesigner.core.GridConstraints(5, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(eloInput, gbc);
         final JLabel label7 = new JLabel();
         label7.setText("DWZ");
-        panel1.add(label7, new com.intellij.uiDesigner.core.GridConstraints(5, 8, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 8;
+        gbc.gridy = 5;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        registerPlayerPanel.add(label7, gbc);
         dwzInput = new JTextField();
         dwzInput.setText("");
-        panel1.add(dwzInput, new com.intellij.uiDesigner.core.GridConstraints(5, 9, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        gbc = new GridBagConstraints();
+        gbc.gridx = 9;
+        gbc.gridy = 5;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        registerPlayerPanel.add(dwzInput, gbc);
     }
 
     /**
@@ -152,4 +296,12 @@ public class RegisterPlayerGui extends JFrame {
         Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
         return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return registerPlayerPanel;
+    }
+
 }

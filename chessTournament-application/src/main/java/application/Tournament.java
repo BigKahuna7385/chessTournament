@@ -23,7 +23,7 @@ public class Tournament {
         this.playerRepository = playerRepository;
     }
 
-    private void initializeServices(){
+    public void initializeServices(){
         gameService = new GameService(gameRepository,playerRepository,roundRepository);
         roundService = new RoundService(gameRepository,playerRepository,roundRepository,gameService);
         playerService = new PlayerService(playerRepository,gameService);
