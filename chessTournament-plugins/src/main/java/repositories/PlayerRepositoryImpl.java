@@ -1,4 +1,4 @@
-package persistance;
+package repositories;
 
 import Player.Player;
 import Player.PlayerRepository;

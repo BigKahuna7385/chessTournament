@@ -1,8 +1,8 @@
 import application.Tournament;
 import gui.TournamentGui;
-import persistance.GameRepositoryImpl;
-import persistance.PlayerRepositoryImpl;
-import persistance.RoundRepositoryImpl;
+import repositories.GameRepositoryImpl;
+import repositories.PlayerRepositoryImpl;
+import repositories.RoundRepositoryImpl;
 
 public class ChessTournamentApplication {
 

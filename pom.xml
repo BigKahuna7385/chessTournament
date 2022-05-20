@@ -10,8 +10,8 @@
     <modules>
         <module>chessTournament-domain</module>
         <module>chessTournament-application</module>
-        <module>chessTournament-infrastructure</module>
-        <module>chessTournament-ui</module>
+        <module>chessTournament-adapters</module>
+        <module>chessTournament-plugins</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

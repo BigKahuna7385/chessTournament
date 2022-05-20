@@ -1,4 +1,4 @@
-package persistance;
+package repositories;
 
 import Round.Round;
 import Round.RoundRepository;
