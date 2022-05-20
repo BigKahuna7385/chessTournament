@@ -11,7 +11,6 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.Locale;
 
 public class RegisterPlayerGui extends JFrame {
@@ -45,13 +44,9 @@ public class RegisterPlayerGui extends JFrame {
             }
         });
 
-        cancelButton.addActionListener(e -> {
-            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        });
+        cancelButton.addActionListener(e -> this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)));
 
-        registerButton.addActionListener(e -> {
-            addPlayer();
-        });
+        registerButton.addActionListener(e -> addPlayer());
     }
 
     private void addPlayer() {
