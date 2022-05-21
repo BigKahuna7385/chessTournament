@@ -41,6 +41,10 @@ public class PlayerUiModel {
         return dwz;
     }
 
+    public String getFullName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     @Override
     public String toString() {
         return "" + firstName + " " + lastName + " " + clubName + " " + elo + " " + dwz;

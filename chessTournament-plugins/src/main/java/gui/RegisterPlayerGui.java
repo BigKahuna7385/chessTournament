@@ -1,5 +1,6 @@
 package gui;
 
+import Player.Player;
 import application.Tournament;
 import application.exceptions.PlayerAlreadyRegistered;
 import exceptions.*;
@@ -81,11 +82,13 @@ public class RegisterPlayerGui extends JFrame {
             return;
         }
 
-        PlayerUiModel newPlayer = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz);
+        PlayerUiModel newPlayerUI = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz);
 
         try {
             try {
-                tournament.getPlayerService().createNewPlayer(playerUiModelToPlayerMapper.apply(newPlayer));
+                Player newPlayer = playerUiModelToPlayerMapper.apply(newPlayerUI);
+                tournament.getPlayerService().createNewPlayer(newPlayer);
+                tournamentGui.refreshPlayerList(newPlayer);
             } catch (InvalidListNumberException e) {
                 JOptionPane.showMessageDialog(null, "Listnumber must be integer larger than zero");
                 return;
@@ -106,7 +109,7 @@ public class RegisterPlayerGui extends JFrame {
             JOptionPane.showMessageDialog(null, "This player has already been registered");
         }
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        tournamentGui.refreshPlayerList();
+
     }
 
 
