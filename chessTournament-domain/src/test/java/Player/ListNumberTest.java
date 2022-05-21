@@ -15,7 +15,7 @@ class ListNumberTest {
             new ListNumber(-1);
             fail("Expected a InvalidListNumberException to be thrown");
         } catch (InvalidListNumberException exception) {
-            assertThat(exception.getMessage().equals("Invalid list number"));
+            assert(exception.getMessage().equals("Invalid list number"));
         }
     }
 }

@@ -7,9 +7,9 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="b0401" class="javax.swing.JLabel">
+      <component id="b0401" class="javax.swing.JLabel" binding="jLabelTitle">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="10" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="11" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
@@ -147,6 +147,17 @@
         </constraints>
         <properties>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="aa50a" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <foreground color="-4521965"/>
+          <hideActionText value="false"/>
+          <text value="Delete"/>
         </properties>
       </component>
     </children>

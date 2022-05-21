@@ -13,6 +13,7 @@ public class PlayerUiModelToPlayerMapper {
         return Player.builder()
                 .playerInfo(playerUiModel.getFirstName(), playerUiModel.getLastName(), playerUiModel.getClubName(), playerUiModel.getListNumber())
                 .rating(playerUiModel.getElo(),playerUiModel.getDwz())
+                .id(playerUiModel.getId())
                 .build();
     }
 }

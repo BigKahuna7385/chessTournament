@@ -14,7 +14,8 @@ public class PlayerToPlayerUIMapper {
                 player.getPlayerInfo().getClubName(),
                 player.getPlayerInfo().getListNumber().getListNumber(),
                 player.getRating().getElo().getRatingNumber(),
-                player.getRating().getDwz().getRatingNumber()
+                player.getRating().getDwz().getRatingNumber(),
+                player.getId()
         );
     }
 }

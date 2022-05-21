@@ -2,6 +2,8 @@ package Player;
 
 import Game.Game;
 import Game.ChessResult;
+import exceptions.InvalidRatingException;
+import exceptions.InvalidRatingNumberException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class PlayerTest {
 
     @Test
-    void createPlayerTest() {
+    void createPlayerTest() throws InvalidRatingNumberException, InvalidRatingException {
         PlayerName playerName = mock(PlayerName.class);
         when(playerName.getFirstName()).thenReturn("Daniel");
         when(playerName.getLastName()).thenReturn("Burger");
@@ -32,7 +34,7 @@ public class PlayerTest {
         when(playerInfo.getClubName()).thenReturn("SF Oberhausen-Rheinhausen");
 
 
-        Player player = Player.builder().playerInfo(playerInfo).rating(mock(Rating.class)).build();
+        Player player = Player.builder().playerInfo(playerInfo).rating(mock(Rating.class)).id(1).build();
 
         assertAll("player",
                 () -> assertEquals("Burger, Daniel", player.getFullName()),

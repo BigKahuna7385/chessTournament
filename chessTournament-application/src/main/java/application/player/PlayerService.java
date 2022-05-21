@@ -16,9 +16,12 @@ public class PlayerService {
 
     private final GameService gameService;
 
+    private int id;
+
     public PlayerService(PlayerRepository playerRepository, GameService gameService) {
         this.playerRepository = playerRepository;
         this.gameService = gameService;
+        id = 1;
     }
 
     public void createNewPlayer(Player player) throws PlayerAlreadyRegistered {
@@ -44,9 +47,9 @@ public class PlayerService {
         return playerList.toArray(new Player[0]);
     }
 
-    public Player findPlayerById(String id) {
+    public Player findPlayerById(int id) {
         for (Player player : playerRepository.list()) {
-            if (player.getUuid().equals(id))
+            if (player.getId() == id)
                 return player;
         }
         return null;
@@ -55,4 +58,13 @@ public class PlayerService {
     public Player[] getAllRegisteredPlayers() {
         return playerRepository.list().toArray(new Player[0]);
     }
+
+    public int getNewId() {
+        return id++;
+    }
+
+    public void modifyPlayer(Player player) {
+        playerRepository.update(player);
+    }
+
 }

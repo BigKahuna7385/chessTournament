@@ -10,12 +10,12 @@ public class Player implements Comparable<Player> {
     private final Rating rating;
     private double score;
     private TournamentRating tournamentRating;
-    private final String uuid;
+    private final int id;
 
-    public Player(PlayerInfo playerInfo, Rating rating) {
+    public Player(PlayerInfo playerInfo, Rating rating, int id) {
         this.playerInfo = playerInfo;
         this.rating = rating;
-        this.uuid = UUID.randomUUID().toString();
+        this.id = id;
         score = 0;
     }
 
@@ -23,8 +23,8 @@ public class Player implements Comparable<Player> {
         return playerInfo.getName().getFullName();
     }
 
-    public String getUuid() {
-        return uuid;
+    public int getId() {
+        return id;
     }
 
     public TournamentRating getTournamentRating() {
@@ -94,12 +94,12 @@ public class Player implements Comparable<Player> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return Objects.equals(playerInfo, player.playerInfo);
+        return id == player.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playerInfo);
+        return Objects.hash(id);
     }
 
     public PlayerInfo getPlayerInfo() {

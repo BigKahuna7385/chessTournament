@@ -6,6 +6,7 @@ public class PlayerFactory {
 
     private PlayerInfo playerInfo;
     private Rating rating;
+    private int id;
 
     public PlayerFactory() {
     }
@@ -76,7 +77,12 @@ public class PlayerFactory {
         return this;
     }
 
+    public PlayerFactory id(int id) throws InvalidRatingException, InvalidRatingNumberException {
+        this.id = id;
+        return this;
+    }
+
     public Player build() {
-        return new Player(playerInfo, rating);
+        return new Player(playerInfo, rating, id);
     }
 }

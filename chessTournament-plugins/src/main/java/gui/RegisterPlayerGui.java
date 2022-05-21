@@ -4,6 +4,7 @@ import Player.Player;
 import application.Tournament;
 import application.exceptions.PlayerAlreadyRegistered;
 import exceptions.*;
+import transport.PlayerToPlayerUIMapper;
 import transport.PlayerUiModel;
 import transport.PlayerUiModelToPlayerMapper;
 
@@ -11,6 +12,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
@@ -28,10 +31,13 @@ public class RegisterPlayerGui extends JFrame {
     private JButton cancelButton;
     private JButton registerButton;
     private JPanel registerPlayerPanel;
-
+    private JLabel jLabelTitle;
+    private JButton deleteButton;
     private final TournamentGui tournamentGui;
+    private int playerId;
 
     public RegisterPlayerGui(Tournament tournament, TournamentGui tournamentGui) {
+        deleteButton.setVisible(false);
         setContentPane(registerPlayerPanel);
         this.tournament = tournament;
         this.tournamentGui = tournamentGui;
@@ -54,6 +60,7 @@ public class RegisterPlayerGui extends JFrame {
 
         registerButton.addActionListener(e -> addPlayer());
     }
+
 
     private void addPlayer() {
         String firstName = firstNameInput.getText();
@@ -82,13 +89,18 @@ public class RegisterPlayerGui extends JFrame {
             return;
         }
 
-        PlayerUiModel newPlayerUI = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz);
+        PlayerUiModel newPlayerUI = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz, playerId > 0 ? playerId : tournament.getPlayerService().getNewId());
 
         try {
             try {
                 Player newPlayer = playerUiModelToPlayerMapper.apply(newPlayerUI);
-                tournament.getPlayerService().createNewPlayer(newPlayer);
-                tournamentGui.refreshPlayerList(newPlayer);
+
+                if (playerId == 0)
+                    tournament.getPlayerService().createNewPlayer(newPlayer);
+                else
+                    tournament.getPlayerService().modifyPlayer(newPlayer);
+
+
             } catch (InvalidListNumberException e) {
                 JOptionPane.showMessageDialog(null, "Listnumber must be integer larger than zero");
                 return;
@@ -106,10 +118,10 @@ public class RegisterPlayerGui extends JFrame {
                 return;
             }
         } catch (PlayerAlreadyRegistered e) {
+
             JOptionPane.showMessageDialog(null, "This player has already been registered");
         }
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-
+        closeWindow();
     }
 
 
@@ -130,28 +142,28 @@ public class RegisterPlayerGui extends JFrame {
     private void $$$setupUI$$$() {
         registerPlayerPanel = new JPanel();
         registerPlayerPanel.setLayout(new GridBagLayout());
-        final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$(null, -1, 24, label1.getFont());
-        if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("Register player");
+        jLabelTitle = new JLabel();
+        Font jLabelTitleFont = this.$$$getFont$$$(null, -1, 24, jLabelTitle.getFont());
+        if (jLabelTitleFont != null) jLabelTitle.setFont(jLabelTitleFont);
+        jLabelTitle.setText("Register player");
         GridBagConstraints gbc;
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 10;
+        gbc.gridwidth = 11;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.NORTH;
-        registerPlayerPanel.add(label1, gbc);
-        final JLabel label2 = new JLabel();
-        label2.setText("Club");
+        registerPlayerPanel.add(jLabelTitle, gbc);
+        final JLabel label1 = new JLabel();
+        label1.setText("Club");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
-        registerPlayerPanel.add(label2, gbc);
+        registerPlayerPanel.add(label1, gbc);
         clubInput = new JTextField();
         clubInput.setText("");
         gbc = new GridBagConstraints();
@@ -173,24 +185,24 @@ public class RegisterPlayerGui extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         registerPlayerPanel.add(lastNameInput, gbc);
-        final JLabel label3 = new JLabel();
-        label3.setText("Lastname:");
+        final JLabel label2 = new JLabel();
+        label2.setText("Lastname:");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
-        registerPlayerPanel.add(label3, gbc);
-        final JLabel label4 = new JLabel();
-        label4.setText("Firstname:");
+        registerPlayerPanel.add(label2, gbc);
+        final JLabel label3 = new JLabel();
+        label3.setText("Firstname:");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.NORTHWEST;
-        registerPlayerPanel.add(label4, gbc);
+        registerPlayerPanel.add(label3, gbc);
         firstNameInput = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
@@ -201,15 +213,15 @@ public class RegisterPlayerGui extends JFrame {
         gbc.anchor = GridBagConstraints.NORTHWEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         registerPlayerPanel.add(firstNameInput, gbc);
-        final JLabel label5 = new JLabel();
-        label5.setText("Listnumber");
+        final JLabel label4 = new JLabel();
+        label4.setText("Listnumber");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
-        registerPlayerPanel.add(label5, gbc);
+        registerPlayerPanel.add(label4, gbc);
         listNumberInput = new JTextField();
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
@@ -220,15 +232,15 @@ public class RegisterPlayerGui extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         registerPlayerPanel.add(listNumberInput, gbc);
-        final JLabel label6 = new JLabel();
-        label6.setText("ELO");
+        final JLabel label5 = new JLabel();
+        label5.setText("ELO");
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
-        registerPlayerPanel.add(label6, gbc);
+        registerPlayerPanel.add(label5, gbc);
         cancelButton = new JButton();
         cancelButton.setBackground(new Color(-10027008));
         cancelButton.setText("Cancel");
@@ -257,15 +269,15 @@ public class RegisterPlayerGui extends JFrame {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         registerPlayerPanel.add(eloInput, gbc);
-        final JLabel label7 = new JLabel();
-        label7.setText("DWZ");
+        final JLabel label6 = new JLabel();
+        label6.setText("DWZ");
         gbc = new GridBagConstraints();
         gbc.gridx = 8;
         gbc.gridy = 5;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         gbc.anchor = GridBagConstraints.WEST;
-        registerPlayerPanel.add(label7, gbc);
+        registerPlayerPanel.add(label6, gbc);
         dwzInput = new JTextField();
         dwzInput.setText("");
         gbc = new GridBagConstraints();
@@ -276,6 +288,14 @@ public class RegisterPlayerGui extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         registerPlayerPanel.add(dwzInput, gbc);
+        deleteButton = new JButton();
+        deleteButton.setForeground(new Color(-4521965));
+        deleteButton.setHideActionText(false);
+        deleteButton.setText("Delete");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        registerPlayerPanel.add(deleteButton, gbc);
     }
 
     /**
@@ -307,4 +327,31 @@ public class RegisterPlayerGui extends JFrame {
         return registerPlayerPanel;
     }
 
+    public void changePlayer(int id) {
+        preFillFormWith(tournament.getPlayerService().findPlayerById(id));
+    }
+
+    private void preFillFormWith(Player player) {
+        deleteButton.setVisible(true);
+        PlayerToPlayerUIMapper playerToPlayerUIMapper = new PlayerToPlayerUIMapper();
+        PlayerUiModel playerUiModel = playerToPlayerUIMapper.map(player);
+        jLabelTitle.setText("Change Player Info");
+        firstNameInput.setText(playerUiModel.getFirstName());
+        lastNameInput.setText(playerUiModel.getLastName());
+        clubInput.setText(playerUiModel.getClubName());
+        listNumberInput.setText(String.valueOf(playerUiModel.getListNumber()));
+        eloInput.setText(String.valueOf(playerUiModel.getElo()));
+        dwzInput.setText(String.valueOf(playerUiModel.getDwz()));
+        playerId = player.getId();
+
+        deleteButton.addActionListener(e -> {
+            tournament.getPlayerService().removePlayer(player);
+            closeWindow();
+        });
+    }
+
+    private void closeWindow() {
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        tournamentGui.refreshPlayerList();
+    }
 }
