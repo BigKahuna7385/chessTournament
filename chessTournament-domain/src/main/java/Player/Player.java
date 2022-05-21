@@ -8,7 +8,6 @@ import java.util.UUID;
 public class Player implements Comparable<Player> {
     private final PlayerInfo playerInfo;
     private final Rating rating;
-
     private double score;
     private TournamentRating tournamentRating;
     private final String uuid;

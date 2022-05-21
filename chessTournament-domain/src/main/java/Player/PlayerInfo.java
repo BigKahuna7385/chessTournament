@@ -46,4 +46,6 @@ public final class PlayerInfo {
     public int hashCode() {
         return Objects.hash(name, clubName, listNumber);
     }
+
+
 }

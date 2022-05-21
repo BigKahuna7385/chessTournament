@@ -9,7 +9,6 @@ public final class ChessResult {
     final boolean blackWon;
     final boolean draw;
 
-
     public ChessResult(boolean whiteWon, boolean blackWon, boolean draw) throws InvalidResultException {
         this.whiteWon = whiteWon;
         this.blackWon = blackWon;

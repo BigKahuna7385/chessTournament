@@ -48,6 +48,8 @@ public class GameService {
         if (gameRepository.contains(game))
             throw new GameAlreadyAddedException();
 
+        gameRepository.add(game);
+
         return game;
     }
 
