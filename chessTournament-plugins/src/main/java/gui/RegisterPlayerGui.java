@@ -89,11 +89,11 @@ public class RegisterPlayerGui extends JFrame {
             return;
         }
 
-        PlayerUiModel newPlayerUI = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz, playerId > 0 ? playerId : tournament.getPlayerService().getNewId());
+        PlayerUiModel newPlayerUI = new PlayerUiModel(firstName, lastName, clubName, listNumber, elo, dwz, playerId > 0 ? playerId : tournament.getPlayerService().getNewId(), 0, 0, 0);
 
         try {
             try {
-                Player newPlayer = playerUiModelToPlayerMapper.apply(newPlayerUI);
+                Player newPlayer = playerUiModelToPlayerMapper.map(newPlayerUI);
 
                 if (playerId == 0)
                     tournament.getPlayerService().createNewPlayer(newPlayer);

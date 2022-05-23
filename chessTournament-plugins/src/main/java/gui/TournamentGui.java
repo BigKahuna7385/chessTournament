@@ -22,6 +22,8 @@ public class TournamentGui extends JFrame {
     private JButton addPlayerButton;
     private JButton startButton;
     private JPanel tournamentPanel;
+    private JButton standingsButton;
+    private JButton crossTableButton;
 
     private final Tournament tournament;
 
@@ -57,6 +59,10 @@ public class TournamentGui extends JFrame {
             } catch (TournamentServicesAreNotInitializedException ex) {
                 JOptionPane.showMessageDialog(null, "The tournament was not correctly initialized.\n Please restart");
             }
+        });
+
+        standingsButton.addActionListener(e -> {
+            new Standings(tournament);
         });
     }
 
@@ -127,14 +133,14 @@ public class TournamentGui extends JFrame {
      */
     private void $$$setupUI$$$() {
         tournamentPanel = new JPanel();
-        tournamentPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
+        tournamentPanel.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
         final JLabel label1 = new JLabel();
         Font label1Font = this.$$$getFont$$$(null, Font.BOLD, 26, label1.getFont());
         if (label1Font != null) label1.setFont(label1Font);
         label1.setText("Chess Tournament Manager");
         tournamentPanel.add(label1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        tournamentPanel.add(scrollPane1, new GridConstraints(1, 1, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        tournamentPanel.add(scrollPane1, new GridConstraints(1, 1, 4, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         registeredPlayerTable = new JTable();
         scrollPane1.setViewportView(registeredPlayerTable);
         addPlayerButton = new JButton();
@@ -143,6 +149,12 @@ public class TournamentGui extends JFrame {
         startButton = new JButton();
         startButton.setText("Start");
         tournamentPanel.add(startButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        standingsButton = new JButton();
+        standingsButton.setText("Standings");
+        tournamentPanel.add(standingsButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        crossTableButton = new JButton();
+        crossTableButton.setText("Cross Table");
+        tournamentPanel.add(crossTableButton, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

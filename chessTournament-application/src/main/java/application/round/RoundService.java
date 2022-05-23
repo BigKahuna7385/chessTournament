@@ -12,25 +12,22 @@ import application.exceptions.GameAlreadyAddedException;
 import application.exceptions.NotAllGamesAreFinishedException;
 import application.exceptions.PlayerNotRegisteredException;
 import application.game.GameService;
+import application.player.PlayerService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class RoundService {
-
-    private final GameRepository gameRepository;
-    private final PlayerRepository playerRepository;
     private final RoundRepository roundRepository;
     private final GameService gameService;
+    private final PlayerService playerService;
 
 
-    public RoundService(GameRepository gameRepository, PlayerRepository playerRepository,
-                        RoundRepository roundRepository, GameService gameService) {
-        this.gameRepository = gameRepository;
-        this.playerRepository = playerRepository;
+    public RoundService(RoundRepository roundRepository, GameService gameService, PlayerService playerService) {
         this.roundRepository = roundRepository;
         this.gameService = gameService;
+        this.playerService = playerService;
     }
 
     public void createNextRound() throws CurrentRoundIsNotClosedException, GameAlreadyAddedException, PlayerNotRegisteredException {
@@ -47,18 +44,18 @@ public class RoundService {
     }
 
     private void calculateRatingNumbersForAllPlayers() {
-        for (Player player : playerRepository.list()) {
+        for (Player player : playerService.getAllRegisteredPlayers()) {
             calculateRatingNumberFor(player);
         }
     }
 
     private Game[] findNewPairings() throws GameAlreadyAddedException, PlayerNotRegisteredException {
-        List<Player> rankedPlayerList = playerRepository.listSortedByRanking();
+        Player[] rankedPlayerList = playerService.getPlayerRanked();
         List<Game> gameList = new ArrayList<>();
-        for (int i = 0; i < rankedPlayerList.size(); i++) {
-            if (rankedPlayerList.size() < i + 1)
+        for (int i = 0; i < rankedPlayerList.length; i++) {
+            if (rankedPlayerList.length < i + 1)
                 break;
-            gameList.add(gameService.createNew(rankedPlayerList.get(i++), rankedPlayerList.get(i)));
+            gameList.add(gameService.createNew(rankedPlayerList[i++], rankedPlayerList[i]));
 
         }
         return gameList.toArray(new Game[0]);

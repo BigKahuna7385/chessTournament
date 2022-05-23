@@ -26,10 +26,10 @@ public class Tournament {
         this.playerRepository = playerRepository;
     }
 
-    public void initializeServices(){
-        gameService = new GameService(gameRepository,playerRepository,roundRepository);
-        roundService = new RoundService(gameRepository,playerRepository,roundRepository,gameService);
-        playerService = new PlayerService(playerRepository,gameService);
+    public void initializeServices() {
+        gameService = new GameService(gameRepository, playerRepository, roundRepository);
+        playerService = new PlayerService(playerRepository, gameService);
+        roundService = new RoundService(roundRepository, gameService, playerService);
     }
 
     public void startTournament() throws TournamentServicesAreNotInitializedException {
