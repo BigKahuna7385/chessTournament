@@ -1,7 +1,6 @@
 package gui;
 
 import Game.Game;
-import Player.Player;
 import application.Tournament;
 import application.exceptions.CurrentRoundIsNotClosedException;
 import application.exceptions.GameAlreadyAddedException;
@@ -11,8 +10,6 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import transport.GameToGameGuiMapper;
 import transport.GameUiModel;
-import transport.PlayerToPlayerUIMapper;
-import transport.PlayerUiModel;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -21,8 +18,6 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Locale;
 
 public class RoundGui extends JFrame {
@@ -59,6 +54,7 @@ public class RoundGui extends JFrame {
         nextRoundButton.addActionListener(e -> {
             try {
                 tournament.getRoundService().createNextRound();
+                setEnabled(false);
                 displayRound();
             } catch (CurrentRoundIsNotClosedException | GameAlreadyAddedException | PlayerNotRegisteredException ex) {
                 JOptionPane.showMessageDialog(null, "The current round is still running.");
@@ -73,13 +69,13 @@ public class RoundGui extends JFrame {
         refreshGamesList();
     }
 
-    private void refreshGamesList() {
+    public void refreshGamesList() {
         GameToGameGuiMapper gameToGameGuiMapper = new GameToGameGuiMapper();
 
         tableModel.setRowCount(0);
 
         for (Game game : tournament.getGameService().getAllGamesIn(tournament.getRoundService().getCurrentRound())) {
-            GameUiModel gameUiModel = gameToGameGuiMapper.apply(game);
+            GameUiModel gameUiModel = gameToGameGuiMapper.map(game);
             tableModel.addRow(new Object[]{gameUiModel.getId(), gameUiModel.getWhitePlayer(), gameUiModel.getScore(), gameUiModel.getBlackPlayer()});
         }
 
@@ -109,8 +105,8 @@ public class RoundGui extends JFrame {
                 if (me.getClickCount() == 2) {
                     JTable target = (JTable) me.getSource();
                     int row = target.getSelectedRow();
-                    GameGui gameGui = new GameGui(tournament, roundGui);
-                    gameGui.setGameScore((Integer) roundTable.getValueAt(row, 0));
+                    Game clickedGame = tournament.getGameService().getGameById((Integer) roundTable.getValueAt(row, 0));
+                    new GameGui(tournament, roundGui, clickedGame);
                 }
             }
         });

@@ -16,4 +16,5 @@ public interface GameRepository {
 
     boolean contains(Game game);
 
+    Game getGameById(int gameId);
 }

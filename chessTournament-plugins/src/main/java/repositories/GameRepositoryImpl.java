@@ -35,6 +35,14 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
+    public Game getGameById(int gameId) {
+        for (Game game : gameList) {
+            if (game.getId() == gameId) return game;
+        }
+        return null;
+    }
+
+    @Override
     public void update(Game game) {
         gameList.remove(game);
         gameList.add(game);

@@ -9,6 +9,7 @@ import Round.Round;
 import Round.RoundRepository;
 import application.exceptions.GameAlreadyAddedException;
 import application.exceptions.PlayerNotRegisteredException;
+import exceptions.InvalidResultException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,8 @@ public class GameService {
         return null;
     }
 
-    public ChessResult getResultOf(Game game) {
+    public ChessResult getResultOf(int gameId) {
+        Game game = gameRepository.getGameById(gameId);
         if (gameRepository.contains(game) && game.getResult() != null)
             return game.getResult();
         return null;
@@ -77,4 +79,19 @@ public class GameService {
     }
 
 
+    public Game getGameById(int gameId) {
+       return gameRepository.getGameById(gameId);
+    }
+
+    public void setWhiteWon(Game game) throws InvalidResultException {
+        game.setResult(new ChessResult(true,false,false));
+    }
+
+    public void setBlackWon(Game game) throws InvalidResultException {
+        game.setResult(new ChessResult(false,true,false));
+    }
+
+    public void setIsDrawn(Game game) throws InvalidResultException {
+        game.setResult(new ChessResult(false,false,true));
+    }
 }
