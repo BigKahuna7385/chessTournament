@@ -14,7 +14,7 @@ class GameTest {
     void createGame() {
         Player whitePlayer = mock(Player.class);
         Player blackPlayer = mock(Player.class);
-        Game game = new Game(whitePlayer, blackPlayer);
+        Game game = new Game(whitePlayer, blackPlayer,0);
 
         assertAll("game",
                 () -> assertEquals(whitePlayer, game.getWhitePlayer()),
@@ -26,8 +26,8 @@ class GameTest {
     void compareGames() {
         Player whitePlayer = mock(Player.class);
         Player blackPlayer = mock(Player.class);
-        Game game1 = new Game(whitePlayer, blackPlayer);
-        Game game2 = new Game(whitePlayer, blackPlayer);
+        Game game1 = new Game(whitePlayer, blackPlayer,0);
+        Game game2 = new Game(whitePlayer, blackPlayer,1);
         assertNotEquals(game1, game2);
     }
 
@@ -35,7 +35,7 @@ class GameTest {
     void addResult()  {
         Player whitePlayer = mock(Player.class);
         Player blackPlayer = mock(Player.class);
-        Game game = new Game(whitePlayer, blackPlayer);
+        Game game = new Game(whitePlayer, blackPlayer,0);
         ChessResult chessResult = mock(ChessResult.class);
         assert (game.getResult() == null);
         game.setResult(chessResult);

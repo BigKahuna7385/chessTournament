@@ -25,67 +25,67 @@ class BuchholzScoreTest {
         ChessResult whiteWins = new ChessResult(true, false, false);
         ChessResult draw = new ChessResult(false, false, true);
 
-        games[0] = new Game(playerA, playerB);
+        games[0] = new Game(playerA, playerB,0);
         games[0].setResult(draw);
 
-        games[1] = new Game(playerA, playerC);
+        games[1] = new Game(playerA, playerC,1);
         games[1].setResult(draw);
 
-        games[2] = new Game(playerA, playerD);
+        games[2] = new Game(playerA, playerD,2);
         games[2].setResult(whiteWins);
 
-        games[3] = new Game(playerA, playerE);
+        games[3] = new Game(playerA, playerE,3);
         games[3].setResult(whiteWins);
 
-        games[4] = new Game(playerA, playerF);
+        games[4] = new Game(playerA, playerF,4);
         games[4].setResult(whiteWins);
 
-        games[5] = new Game(playerA, playerG);
+        games[5] = new Game(playerA, playerG,5);
         games[5].setResult(whiteWins);
 
-        games[6] = new Game(playerB, playerC);
+        games[6] = new Game(playerB, playerC,6);
         games[6].setResult(draw);
 
-        games[7] = new Game(playerB, playerD);
+        games[7] = new Game(playerB, playerD,7);
         games[7].setResult(draw);
 
-        games[8] = new Game(playerB, playerE);
+        games[8] = new Game(playerB, playerE,8);
         games[8].setResult(whiteWins);
 
-        games[9] = new Game(playerB, playerF);
+        games[9] = new Game(playerB, playerF,9);
         games[9].setResult(whiteWins);
 
-        games[10] = new Game(playerB, playerG);
+        games[10] = new Game(playerB, playerG,10);
         games[10].setResult(whiteWins);
 
-        games[11] = new Game(playerC, playerD);
+        games[11] = new Game(playerC, playerD,11);
         games[11].setResult(draw);
 
-        games[12] = new Game(playerC, playerE);
+        games[12] = new Game(playerC, playerE,12);
         games[12].setResult(draw);
 
-        games[13] = new Game(playerC, playerF);
+        games[13] = new Game(playerC, playerF,13);
         games[13].setResult(whiteWins);
 
-        games[14] = new Game(playerC, playerG);
+        games[14] = new Game(playerC, playerG,14);
         games[14].setResult(whiteWins);
 
-        games[15] = new Game(playerD, playerE);
+        games[15] = new Game(playerD, playerE,15);
         games[15].setResult(whiteWins);
 
-        games[16] = new Game(playerD, playerF);
+        games[16] = new Game(playerD, playerF,16);
         games[16].setResult(whiteWins);
 
-        games[17] = new Game(playerD, playerG);
+        games[17] = new Game(playerD, playerG,17);
         games[17].setResult(whiteWins);
 
-        games[18] = new Game(playerE, playerF);
+        games[18] = new Game(playerE, playerF,18);
         games[18].setResult(whiteWins);
 
-        games[19] = new Game(playerE, playerG);
+        games[19] = new Game(playerE, playerG,19);
         games[19].setResult(whiteWins);
 
-        games[20] = new Game(playerF, playerG);
+        games[20] = new Game(playerF, playerG,20);
         games[20].setResult(whiteWins);
 
         assertThat(playerA.getScore()).isEqualTo(5d);

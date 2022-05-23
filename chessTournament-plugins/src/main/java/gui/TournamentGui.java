@@ -2,6 +2,7 @@ package gui;
 
 import Player.Player;
 import application.Tournament;
+import application.exceptions.TournamentServicesAreNotInitializedException;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import transport.PlayerToPlayerUIMapper;
@@ -48,6 +49,15 @@ public class TournamentGui extends JFrame {
                 setRegisterInProgress(true);
             }
         });
+
+        startButton.addActionListener(e -> {
+            try {
+                tournament.startTournament();
+                new RoundGui(tournament, this);
+            } catch (TournamentServicesAreNotInitializedException ex) {
+                JOptionPane.showMessageDialog(null, "The tournament was not correctly initialized.\n Please restart");
+            }
+        });
     }
 
     private void setUpTable() {
@@ -70,9 +80,9 @@ public class TournamentGui extends JFrame {
         registeredPlayerTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                if (me.getClickCount() == 2) {     // to detect doble click events
+                if (me.getClickCount() == 2) {
                     JTable target = (JTable) me.getSource();
-                    int row = target.getSelectedRow(); // select a row
+                    int row = target.getSelectedRow();
                     RegisterPlayerGui registerPlayerGui = new RegisterPlayerGui(tournament, tournamentGui);
                     registerPlayerGui.changePlayer((Integer) registeredPlayerTable.getValueAt(row, 0));
                 }

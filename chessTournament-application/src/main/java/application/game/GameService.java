@@ -43,7 +43,7 @@ public class GameService {
         if (!playerRepository.contains(whitePlayer) || !playerRepository.contains(blackPlayer))
             throw new PlayerNotRegisteredException();
 
-        Game game = new Game(whitePlayer, blackPlayer);
+        Game game = new Game(whitePlayer, blackPlayer, getNextGameId());
 
         if (gameRepository.contains(game))
             throw new GameAlreadyAddedException();
@@ -51,6 +51,10 @@ public class GameService {
         gameRepository.add(game);
 
         return game;
+    }
+
+    private int getNextGameId() {
+        return gameRepository.list().size();
     }
 
     public Game[] getAllGamesOf(Player player) {

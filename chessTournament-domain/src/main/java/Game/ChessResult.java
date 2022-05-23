@@ -36,6 +36,15 @@ public final class ChessResult {
     }
 
     @Override
+    public String toString() {
+        if (isDrawn())
+            return "½:½";
+        if (hasWhiteWon())
+            return "1:0";
+        return "0:1";
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

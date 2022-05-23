@@ -13,9 +13,7 @@ import java.util.List;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
-
     private final GameService gameService;
-
     private int id;
 
     public PlayerService(PlayerRepository playerRepository, GameService gameService) {

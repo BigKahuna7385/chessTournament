@@ -3,6 +3,9 @@ package application;
 import Game.GameRepository;
 import Player.PlayerRepository;
 import Round.RoundRepository;
+import application.exceptions.GameAlreadyAddedException;
+import application.exceptions.PlayerNotRegisteredException;
+import application.exceptions.TournamentServicesAreNotInitializedException;
 import application.game.GameService;
 import application.player.PlayerService;
 import application.round.RoundService;
@@ -27,6 +30,17 @@ public class Tournament {
         gameService = new GameService(gameRepository,playerRepository,roundRepository);
         roundService = new RoundService(gameRepository,playerRepository,roundRepository,gameService);
         playerService = new PlayerService(playerRepository,gameService);
+    }
+
+    public void startTournament() throws TournamentServicesAreNotInitializedException {
+        if (gameService == null || roundService == null || playerService == null)
+            throw new TournamentServicesAreNotInitializedException();
+
+        try {
+            roundService.createFirstRound();
+        } catch (GameAlreadyAddedException | PlayerNotRegisteredException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public GameService getGameService() {

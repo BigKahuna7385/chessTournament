@@ -7,10 +7,15 @@ import Player.PlayerRepository;
 import Player.TournamentRating;
 import Round.Round;
 import Round.RoundRepository;
+import application.exceptions.CurrentRoundIsNotClosedException;
+import application.exceptions.GameAlreadyAddedException;
+import application.exceptions.NotAllGamesAreFinishedException;
+import application.exceptions.PlayerNotRegisteredException;
 import application.game.GameService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RoundService {
 
@@ -19,35 +24,42 @@ public class RoundService {
     private final RoundRepository roundRepository;
     private final GameService gameService;
 
-    public RoundService(GameRepository gameRepository, PlayerRepository playerRepository, RoundRepository roundRepository, GameService gameService) {
+
+    public RoundService(GameRepository gameRepository, PlayerRepository playerRepository,
+                        RoundRepository roundRepository, GameService gameService) {
         this.gameRepository = gameRepository;
         this.playerRepository = playerRepository;
         this.roundRepository = roundRepository;
         this.gameService = gameService;
     }
 
-    public void createNextRound() {
-        if (currentRoundReady())
-            calculateRatingNumbers();
+    public void createNextRound() throws CurrentRoundIsNotClosedException, GameAlreadyAddedException, PlayerNotRegisteredException {
+        if (!getCurrentRound().isClosed())
+            throw new CurrentRoundIsNotClosedException();
+        calculateRatingNumbersForAllPlayers();
         Game[] games = findNewPairings();
         roundRepository.add(new Round(games, roundRepository.list().size() + 1));
     }
 
-    private void calculateRatingNumbers() {
+    public void closeRound() throws NotAllGamesAreFinishedException {
+        if (allGamesAreFinished())
+            Objects.requireNonNull(getCurrentRound()).setClosed(true);
+    }
+
+    private void calculateRatingNumbersForAllPlayers() {
         for (Player player : playerRepository.list()) {
             calculateRatingNumberFor(player);
         }
     }
 
-    private Game[] findNewPairings() {
+    private Game[] findNewPairings() throws GameAlreadyAddedException, PlayerNotRegisteredException {
         List<Player> rankedPlayerList = playerRepository.listSortedByRanking();
         List<Game> gameList = new ArrayList<>();
         for (int i = 0; i < rankedPlayerList.size(); i++) {
             if (rankedPlayerList.size() < i + 1)
                 break;
-            Game game = new Game(rankedPlayerList.get(i++), rankedPlayerList.get(i));
-            gameList.add(game);
-            gameRepository.add(game);
+            gameList.add(gameService.createNew(rankedPlayerList.get(i++), rankedPlayerList.get(i)));
+
         }
         return gameList.toArray(new Game[0]);
     }
@@ -57,16 +69,25 @@ public class RoundService {
         player.setTournamentRating(TournamentRating.calculateTournamentRating().player(player).games(games).calculate());
     }
 
-    private boolean currentRoundReady() {
-        Round round = getCurrentRound();
-        for (Game game:round.getGames()){
+    public Round getCurrentRound() {
+        if (roundRepository.list().size() == 0) return null;
+        return roundRepository.list().get(roundRepository.list().size() - 1);
+    }
+
+    public int getCurrentRoundNumber() {
+        return roundRepository.list().size();
+    }
+
+    private boolean allGamesAreFinished() throws NotAllGamesAreFinishedException {
+        for (Game game : gameService.getAllGamesIn(Objects.requireNonNull(getCurrentRound()))) {
             if (game.getResult() == null)
-                return false;
+                throw new NotAllGamesAreFinishedException();
         }
         return true;
     }
 
-    private Round getCurrentRound() {
-        return roundRepository.list().get(roundRepository.list().size() - 1);
+    public void createFirstRound() throws GameAlreadyAddedException, PlayerNotRegisteredException {
+        Game[] games = findNewPairings();
+        roundRepository.add(new Round(games, getCurrentRoundNumber() + 1));
     }
 }
