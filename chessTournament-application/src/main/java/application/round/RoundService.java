@@ -1,9 +1,7 @@
 package application.round;
 
 import Game.Game;
-import Game.GameRepository;
 import Player.Player;
-import Player.PlayerRepository;
 import Player.TournamentRating;
 import Round.Round;
 import Round.RoundRepository;
