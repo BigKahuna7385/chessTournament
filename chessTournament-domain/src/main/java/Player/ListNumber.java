@@ -9,7 +9,7 @@ public final class ListNumber {
 
     public ListNumber(int listNumber) throws InvalidListNumberException {
         this.listNumber = listNumber;
-        if (this.listNumber<0)
+        if (this.listNumber < 0)
             throw new InvalidListNumberException();
     }
 

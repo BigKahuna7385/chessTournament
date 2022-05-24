@@ -5,7 +5,6 @@ import exceptions.InvalidPlayerInfoException;
 import java.util.Objects;
 
 public final class PlayerInfo {
-
      final PlayerName name;
      final String clubName;
      final ListNumber listNumber;

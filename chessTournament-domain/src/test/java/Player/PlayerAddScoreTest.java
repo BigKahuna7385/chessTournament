@@ -1,8 +1,9 @@
 package Player;
 
-import Game.Game;
 import Game.ChessResult;
-import exceptions.*;
+import Game.Game;
+import exceptions.InvalidRatingException;
+import exceptions.InvalidRatingNumberException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class TournamentRatingTest {
+public class PlayerAddScoreTest {
 
     private Player playerA;
     private Player playerB;
@@ -22,9 +23,6 @@ class TournamentRatingTest {
 
     private ChessResult whiteWins;
     private ChessResult draw;
-
-    private Game[] games;
-
 
     @BeforeEach
     void init() {
@@ -55,42 +53,40 @@ class TournamentRatingTest {
     }
 
     void setupGames() {
-        games = new Game[21];
-        games[0] = mockUpGame(playerA, playerB, draw);
-        games[1] = mockUpGame(playerA, playerC, draw);
-        games[2] = mockUpGame(playerA, playerD, whiteWins);
-        games[3] = mockUpGame(playerA, playerE, whiteWins);
-        games[4] = mockUpGame(playerA, playerF, whiteWins);
-        games[5] = mockUpGame(playerA, playerG, whiteWins);
-        games[6] = mockUpGame(playerB, playerC, draw);
-        games[7] = mockUpGame(playerB, playerD, draw);
-        games[8] = mockUpGame(playerB, playerE, whiteWins);
-        games[9] = mockUpGame(playerB, playerF, whiteWins);
-        games[10] = mockUpGame(playerB, playerG, whiteWins);
-        games[11] = mockUpGame(playerC, playerD, draw);
-        games[12] = mockUpGame(playerC, playerE, draw);
-        games[13] = mockUpGame(playerC, playerF, whiteWins);
-        games[14] = mockUpGame(playerC, playerG, whiteWins);
-        games[15] = mockUpGame(playerD, playerE, whiteWins);
-        games[16] = mockUpGame(playerD, playerF, whiteWins);
-        games[17] = mockUpGame(playerD, playerG, whiteWins);
-        games[18] = mockUpGame(playerE, playerF, whiteWins);
-        games[19] = mockUpGame(playerE, playerG, whiteWins);
-        games[20] = mockUpGame(playerF, playerG, whiteWins);
+        mockUpGame(playerA, playerB, draw);
+        mockUpGame(playerA, playerC, draw);
+        mockUpGame(playerA, playerD, whiteWins);
+        mockUpGame(playerA, playerE, whiteWins);
+        mockUpGame(playerA, playerF, whiteWins);
+        mockUpGame(playerA, playerG, whiteWins);
+        mockUpGame(playerB, playerC, draw);
+        mockUpGame(playerB, playerD, draw);
+        mockUpGame(playerB, playerE, whiteWins);
+        mockUpGame(playerB, playerF, whiteWins);
+        mockUpGame(playerB, playerG, whiteWins);
+        mockUpGame(playerC, playerD, draw);
+        mockUpGame(playerC, playerE, draw);
+        mockUpGame(playerC, playerF, whiteWins);
+        mockUpGame(playerC, playerG, whiteWins);
+        mockUpGame(playerD, playerE, whiteWins);
+        mockUpGame(playerD, playerF, whiteWins);
+        mockUpGame(playerD, playerG, whiteWins);
+        mockUpGame(playerE, playerF, whiteWins);
+        mockUpGame(playerE, playerG, whiteWins);
+        mockUpGame(playerF, playerG, whiteWins);
     }
 
-    Game mockUpGame(Player playerWhite, Player playerBlack, ChessResult result) {
+    void mockUpGame(Player playerWhite, Player playerBlack, ChessResult result) {
         Game game = mock(Game.class);
         when(game.getWhitePlayer()).thenReturn(playerWhite);
         when(game.getBlackPlayer()).thenReturn(playerBlack);
         when(game.getResult()).thenReturn(result);
         playerWhite.addScoreFrom(game);
         playerBlack.addScoreFrom(game);
-        return game;
     }
 
     @Test
-    void testSonnebornBergerScore() {
+    void testAddScore() {
         assertThat(playerA.getScore()).isEqualTo(5d);
         assertThat(playerB.getScore()).isEqualTo(4.5d);
         assertThat(playerC.getScore()).isEqualTo(4d);
@@ -98,15 +94,6 @@ class TournamentRatingTest {
         assertThat(playerE.getScore()).isEqualTo(2.5d);
         assertThat(playerF.getScore()).isEqualTo(1d);
         assertThat(playerG.getScore()).isEqualTo(0d);
-
-        playerC.setTournamentRating(TournamentRating.calculateTournamentRating().player(playerC).games(games).calculate());
-        playerD.setTournamentRating(TournamentRating.calculateTournamentRating().player(playerD).games(games).calculate());
-
-        assertThat(playerC.getTournamentRating().getSonnebornBergerScore()).isEqualTo(9.0d);
-        assertThat(playerD.getTournamentRating().getSonnebornBergerScore()).isEqualTo(7.75d);
-
-        //https://de.wikipedia.org/wiki/Feinwertung#Einzelwertungen
-
     }
 
 }

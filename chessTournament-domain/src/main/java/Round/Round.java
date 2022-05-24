@@ -2,6 +2,8 @@ package Round;
 
 import Game.Game;
 
+import java.util.Objects;
+
 public class Round {
 
     private final Game[] games;
@@ -28,5 +30,18 @@ public class Round {
 
     public void setClosed(boolean closed) {
         this.closed = closed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Round round = (Round) o;
+        return id == round.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
