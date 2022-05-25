@@ -6,12 +6,15 @@ public class SonnebornBergerScore {
 
     public double calculateSonnebornBergerScoreWith(Game[] gamesOf, Player player) {
         double sonnebornBergerScore = 0;
+        PlayerUtils playerUtils = new PlayerUtils();
         for (Game game : gamesOf) {
-            if (player.getOpponentIn(game) != null) {
-                if (player.hasWon(game))
-                    sonnebornBergerScore = sonnebornBergerScore + player.getOpponentIn(game).getScore();
-                if (player.hasDrawn(game))
-                    sonnebornBergerScore = sonnebornBergerScore + player.getOpponentIn(game).getScore() / 2;
+            Player opponent = playerUtils.getOpponentOf(player).In(game);
+            if (opponent != null) {
+                playerUtils.has(player).Won(game);
+                if (playerUtils.has(player).Won(game))
+                    sonnebornBergerScore = sonnebornBergerScore + opponent.getScore();
+                if (playerUtils.has(player).Drawn(game))
+                    sonnebornBergerScore = sonnebornBergerScore + opponent.getScore() / 2;
             }
         }
         return sonnebornBergerScore;

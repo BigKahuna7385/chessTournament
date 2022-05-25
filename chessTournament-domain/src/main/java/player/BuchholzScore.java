@@ -6,9 +6,11 @@ public class BuchholzScore {
 
     public double calculateBuchholzScoreWith(Game[] gamesOf, Player player) {
         double buchholzScore = 0;
+        PlayerUtils playerUtils = new PlayerUtils();
         for (Game game : gamesOf) {
-            if (player.getOpponentIn(game) != null)
-                buchholzScore = buchholzScore + player.getOpponentIn(game).getScore();
+            Player opponent = playerUtils.getOpponentOf(player).In(game);
+            if (opponent != null)
+                buchholzScore = buchholzScore + opponent.getScore();
         }
         return buchholzScore;
     }

@@ -119,60 +119,6 @@ public class PlayerTest {
         assertThat(playerList.get(3)).isEqualTo(playerB);
     }
 
-    @Test
-    void testCorrectGameResultsForPlayer() {
-
-        Player player = setUpPlayer(0);
-
-        ChessResult whiteHasWon = mock(ChessResult.class);
-        when(whiteHasWon.hasWhiteWon()).thenReturn(true);
-
-        ChessResult blackHasWon = mock(ChessResult.class);
-        when(blackHasWon.hasBlackWon()).thenReturn(true);
-
-        ChessResult isDrawn = mock(ChessResult.class);
-        when(isDrawn.isDrawn()).thenReturn(true);
-
-        Game game1 = mock(Game.class);
-        when(game1.getWhitePlayer()).thenReturn(player);
-        when(game1.getResult()).thenReturn(whiteHasWon);
-
-        assertThat(player.hasWon(game1)).isEqualTo(true);
-        assertThat(player.hasDrawn(game1)).isEqualTo(false);
-
-        Game game2 = mock(Game.class);
-        when(game2.getBlackPlayer()).thenReturn(player);
-        when(game2.getResult()).thenReturn(blackHasWon);
-        assertThat(player.hasWon(game2)).isEqualTo(true);
-        assertThat(player.hasDrawn(game2)).isEqualTo(false);
-
-
-        Game game3 = mock(Game.class);
-        when(game3.getBlackPlayer()).thenReturn(player);
-        when(game3.getResult()).thenReturn(isDrawn);
-        assertThat(player.hasWon(game3)).isEqualTo(false);
-        assertThat(player.hasDrawn(game3)).isEqualTo(true);
-
-    }
-
-    @Test
-    void testGetOpponentMethod() {
-        Player player = setUpPlayer(0);
-        Player opponent = setUpPlayer(1);
-
-        Game game = mock(Game.class);
-        when(game.getWhitePlayer()).thenReturn(player);
-        when(game.getBlackPlayer()).thenReturn(opponent);
-
-        assertThat(player.getOpponentIn(game)).isEqualTo(opponent);
-
-        Game rematch = mock(Game.class);
-        when(rematch.getWhitePlayer()).thenReturn(opponent);
-        when(rematch.getBlackPlayer()).thenReturn(player);
-
-        assertThat(player.getOpponentIn(game)).isEqualTo(opponent);
-    }
-
     Player setUpPlayer(int id) {
         return builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(id).build();
     }

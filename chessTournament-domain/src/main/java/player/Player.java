@@ -18,23 +18,33 @@ public class Player implements Comparable<Player> {
         score = 0;
     }
 
-    public String getFullName() {
-        return playerInfo.getName().getFullName();
+    public PlayerInfo getPlayerInfo() {
+        return playerInfo;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     public int getId() {
         return id;
     }
 
+    public double getScore() {
+        return score;
+    }
+
     public TournamentRating getTournamentRating() {
         return tournamentRating;
     }
 
+    public String getFullName() {
+        return playerInfo.getName().getFullName();
+    }
 
     public void setTournamentRating(TournamentRating tournamentRating) {
         this.tournamentRating = tournamentRating;
     }
-
 
     public static PlayerFactory builder() {
         return new PlayerFactory();
@@ -48,30 +58,6 @@ public class Player implements Comparable<Player> {
         } else if (game.getBlackPlayer() == this && game.getResult().hasBlackWon()) {
             score = score + 1.0d;
         }
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public boolean hasWon(Game game) {
-        if (this == game.getBlackPlayer() && game.getResult().hasBlackWon()) return true;
-        else return this == game.getWhitePlayer() && game.getResult().hasWhiteWon();
-    }
-
-    public boolean hasDrawn(Game game) {
-        if (game.getBlackPlayer() == this || game.getWhitePlayer() == this) return game.getResult().isDrawn();
-        return false;
-    }
-
-    public Player getOpponentIn(Game game) {
-        if (game == null)
-            return null;
-        if (game.getWhitePlayer() == this)
-            return game.getBlackPlayer();
-        if (game.getBlackPlayer() == this)
-            return game.getWhitePlayer();
-        return null;
     }
 
     @Override
@@ -99,14 +85,6 @@ public class Player implements Comparable<Player> {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public PlayerInfo getPlayerInfo() {
-        return playerInfo;
-    }
-
-    public Rating getRating() {
-        return rating;
     }
 
     @Override
