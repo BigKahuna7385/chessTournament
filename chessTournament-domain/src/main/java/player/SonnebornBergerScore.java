@@ -10,7 +10,6 @@ public class SonnebornBergerScore {
         for (Game game : gamesOf) {
             Player opponent = playerUtils.getOpponentOf(player).In(game);
             if (opponent != null) {
-                playerUtils.has(player).Won(game);
                 if (playerUtils.has(player).Won(game))
                     sonnebornBergerScore = sonnebornBergerScore + opponent.getScore();
                 if (playerUtils.has(player).Drawn(game))
@@ -19,5 +18,4 @@ public class SonnebornBergerScore {
         }
         return sonnebornBergerScore;
     }
-
 }

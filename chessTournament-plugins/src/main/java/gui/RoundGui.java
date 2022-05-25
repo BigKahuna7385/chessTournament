@@ -28,24 +28,33 @@ public class RoundGui extends JFrame {
     private JButton closeRoundButton;
     private JButton nextRoundButton;
     private JPanel roundPanel;
+    private JScrollPane standingsPanel;
+    private JScrollPane crossTablePanel;
     private DefaultTableModel tableModel;
     private final RoundGui roundGui;
+    private StandingsGui standingsGui;
+    private CrossTableGui crossTableGui;
 
     public RoundGui(Tournament tournament, TournamentGui tournamentGui) {
         this.tournament = tournament;
         this.tournamentGui = tournamentGui;
         this.roundGui = this;
+        standingsGui = new StandingsGui(tournament);
+        crossTableGui = new CrossTableGui(tournament);
         setContentPane(roundPanel);
         setTitle("Round Manager");
-        setSize(500, 500);
+        setSize(1000, 1000);
         setVisible(true);
 
         displayRound();
+        standingsPanel.setViewportView(standingsGui.getStandingsPanel());
+        crossTablePanel.setViewportView(crossTableGui.getCrossTablePanel());
 
         closeRoundButton.addActionListener(e -> {
             try {
                 tournament.getRoundService().closeRound();
                 nextRoundButton.setEnabled(true);
+                closeRoundButton.setEnabled(false);
             } catch (NotAllGamesAreFinishedException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -54,8 +63,9 @@ public class RoundGui extends JFrame {
         nextRoundButton.addActionListener(e -> {
             try {
                 tournament.getRoundService().createNextRound();
-                setEnabled(false);
-                displayRound();
+                nextRoundButton.setEnabled(false);
+                closeRoundButton.setEnabled(true);
+                refreshRoundFrame();
             } catch (CurrentRoundIsNotClosedException | GameAlreadyAddedException | PlayerNotRegisteredException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -66,10 +76,20 @@ public class RoundGui extends JFrame {
 
     private void displayRound() {
         setUpTable();
-        refreshGamesList();
+        refreshRoundFrame();
     }
 
-    public void refreshGamesList() {
+    public void refreshRoundFrame() {
+        refreshGameList();
+        standingsGui.refreshGamesList();
+        crossTableGui.refreshGamesList();
+
+        revalidate();
+        repaint();
+    }
+
+
+    private void refreshGameList() {
         GameToGameGuiMapper gameToGameGuiMapper = new GameToGameGuiMapper();
 
         tableModel.setRowCount(0);
@@ -78,9 +98,6 @@ public class RoundGui extends JFrame {
             GameUiModel gameUiModel = gameToGameGuiMapper.map(game);
             tableModel.addRow(new Object[]{gameUiModel.getId(), gameUiModel.getWhitePlayer(), gameUiModel.getScore(), gameUiModel.getBlackPlayer()});
         }
-
-        revalidate();
-        repaint();
     }
 
     private void setUpTable() {
@@ -129,23 +146,27 @@ public class RoundGui extends JFrame {
      */
     private void $$$setupUI$$$() {
         roundPanel = new JPanel();
-        roundPanel.setLayout(new GridLayoutManager(3, 2, new Insets(0, 0, 0, 0), -1, -1));
+        roundPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         roundNumber = new JLabel();
         Font roundNumberFont = this.$$$getFont$$$(null, Font.BOLD, 26, roundNumber.getFont());
         if (roundNumberFont != null) roundNumber.setFont(roundNumberFont);
         roundNumber.setText("Label");
-        roundPanel.add(roundNumber, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        roundPanel.add(roundNumber, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        roundPanel.add(scrollPane1, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        roundPanel.add(scrollPane1, new GridConstraints(1, 0, 2, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         roundTable = new JTable();
         scrollPane1.setViewportView(roundTable);
         closeRoundButton = new JButton();
-        closeRoundButton.setText("Close Round");
-        roundPanel.add(closeRoundButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        closeRoundButton.setText("Close round");
+        roundPanel.add(closeRoundButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nextRoundButton = new JButton();
         nextRoundButton.setEnabled(false);
-        nextRoundButton.setText("Next Round");
-        roundPanel.add(nextRoundButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nextRoundButton.setText("Next round");
+        roundPanel.add(nextRoundButton, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        standingsPanel = new JScrollPane();
+        roundPanel.add(standingsPanel, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        crossTablePanel = new JScrollPane();
+        roundPanel.add(crossTablePanel, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**

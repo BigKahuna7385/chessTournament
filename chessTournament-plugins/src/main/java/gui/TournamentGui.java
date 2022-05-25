@@ -25,7 +25,6 @@ public class TournamentGui extends JFrame {
     private JButton startButton;
     private JPanel tournamentPanel;
     private JButton standingsButton;
-    private JButton crossTableButton;
 
     private final Tournament tournament;
 
@@ -63,8 +62,6 @@ public class TournamentGui extends JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         });
-
-        standingsButton.addActionListener(e -> new Standings(tournament));
     }
 
     private void setUpTable() {
@@ -145,17 +142,11 @@ public class TournamentGui extends JFrame {
         registeredPlayerTable = new JTable();
         scrollPane1.setViewportView(registeredPlayerTable);
         addPlayerButton = new JButton();
-        addPlayerButton.setText("Add Player");
+        addPlayerButton.setText("Add player");
         tournamentPanel.add(addPlayerButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         startButton = new JButton();
         startButton.setText("Start");
-        tournamentPanel.add(startButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        standingsButton = new JButton();
-        standingsButton.setText("Standings");
-        tournamentPanel.add(standingsButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        crossTableButton = new JButton();
-        crossTableButton.setText("Cross Table");
-        tournamentPanel.add(crossTableButton, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        tournamentPanel.add(startButton, new GridConstraints(2, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

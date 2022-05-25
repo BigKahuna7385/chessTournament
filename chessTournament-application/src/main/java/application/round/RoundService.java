@@ -21,7 +21,6 @@ public class RoundService {
     private final GameService gameService;
     private final PlayerService playerService;
 
-
     public RoundService(RoundRepository roundRepository, GameService gameService, PlayerService playerService) {
         this.roundRepository = roundRepository;
         this.gameService = gameService;

@@ -14,24 +14,21 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
-public class Standings extends JFrame {
+public class StandingsGui  {
     private JLabel jLabelStandings;
     private JTable standingsTable;
     private JPanel standingsPanel;
-
     private DefaultTableModel tableModel;
-
     private final Tournament tournament;
 
-    public Standings(Tournament tournament) throws HeadlessException {
+    public StandingsGui(Tournament tournament) {
         this.tournament = tournament;
-        setContentPane(standingsPanel);
-        setVisible(true);
-        setTitle("Tournament Standings");
-        setSize(500, 500);
         setUpTable();
         refreshGamesList();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    public JPanel getStandingsPanel() {
+        return standingsPanel;
     }
 
     private void setUpTable() {
@@ -63,8 +60,8 @@ public class Standings extends JFrame {
             tableModel.addRow(new Object[]{playerUiModel.getId(), playerUiModel.getFullName(), playerUiModel.getScore(), playerUiModel.getBuchholzScore(), playerUiModel.getSonnebornBergerScore()});
         }
 
-        revalidate();
-        repaint();
+        standingsPanel.revalidate();
+        standingsPanel.repaint();
     }
 
     {

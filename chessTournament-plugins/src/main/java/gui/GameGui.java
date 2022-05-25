@@ -42,7 +42,7 @@ public class GameGui extends JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 super.windowClosed(e);
-                roundGui.refreshGamesList();
+                roundGui.refreshRoundFrame();
             }
         });
 
@@ -113,7 +113,7 @@ public class GameGui extends JFrame {
 
     private void closeWindow() {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        roundGui.refreshGamesList();
+        roundGui.refreshRoundFrame();
     }
 
 

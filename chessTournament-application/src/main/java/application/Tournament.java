@@ -15,7 +15,6 @@ public class Tournament {
     private final GameRepository gameRepository;
     private final RoundRepository roundRepository;
     private final PlayerRepository playerRepository;
-
     private GameService gameService;
     private PlayerService playerService;
     private RoundService roundService;
