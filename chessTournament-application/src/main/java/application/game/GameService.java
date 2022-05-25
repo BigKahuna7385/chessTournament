@@ -80,18 +80,38 @@ public class GameService {
 
 
     public Game getGameById(int gameId) {
-       return gameRepository.getGameById(gameId);
+        return gameRepository.getGameById(gameId);
     }
 
     public void setWhiteWon(Game game) throws InvalidResultException {
-        game.setResult(new ChessResult(true,false,false));
+        game.setResult(new ChessResult(true, false, false));
     }
 
     public void setBlackWon(Game game) throws InvalidResultException {
-        game.setResult(new ChessResult(false,true,false));
+        game.setResult(new ChessResult(false, true, false));
     }
 
     public void setIsDrawn(Game game) throws InvalidResultException {
-        game.setResult(new ChessResult(false,false,true));
+        game.setResult(new ChessResult(false, false, true));
+    }
+
+    public Game getGameBetween(Player player, Player opponent) {
+        for (Game game : gameRepository.list()) {
+            if (game.equals(new Game(player, opponent, 0)))
+                return game;
+        }
+        return null;
+    }
+
+
+    public Player getNextOpponentFor(Player player, List<Player> playerAlreadyInGames) {
+        for (Player possibleOpponent : playerRepository.listSortedByRanking()) {
+            if (possibleOpponent == player)
+                continue;
+            if (playerAlreadyInGames.size() > 0 && playerAlreadyInGames.contains(possibleOpponent))
+                continue;
+            if (getGameBetween(player, possibleOpponent) == null) return possibleOpponent;
+        }
+        return null;
     }
 }

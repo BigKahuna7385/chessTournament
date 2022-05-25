@@ -26,7 +26,11 @@ class GameTest {
         Player blackPlayer = mock(Player.class);
         Game game1 = new Game(whitePlayer, blackPlayer,0);
         Game game2 = new Game(whitePlayer, blackPlayer,1);
-        assertNotEquals(game1, game2);
+        assertEquals(game1, game2);
+
+        Game game3 = new Game(whitePlayer, blackPlayer,0);
+        Game game4 = new Game(blackPlayer, whitePlayer,1);
+        assertEquals(game3, game4);
     }
 
     @Test

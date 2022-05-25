@@ -1,5 +1,6 @@
 package application.player;
 
+import game.Game;
 import player.Player;
 import player.PlayerRepository;
 import player.TournamentRating;
@@ -14,6 +15,8 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
     private final GameService gameService;
     private int id;
+
+    private Player player;
 
     public PlayerService(PlayerRepository playerRepository, GameService gameService) {
         this.playerRepository = playerRepository;
@@ -68,4 +71,14 @@ public class PlayerService {
         playerRepository.update(player);
     }
 
+    public PlayerService getScoreOf(Player player) {
+        this.player = player;
+        return this;
+    }
+
+    public String vs(Player opponent) {
+        Game game = gameService.getGameBetween(player, opponent);
+        if (game == null) return "";
+        return game.getScoreOf(player);
+    }
 }

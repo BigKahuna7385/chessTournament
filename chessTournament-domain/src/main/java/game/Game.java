@@ -2,14 +2,15 @@ package game;
 
 import player.Player;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Game {
 
     private final Player whitePlayer;
     private final Player blackPlayer;
+    private int id;
     private ChessResult chessResult;
-    private final int id;
 
     public Game(Player whitePlayer, Player blackPlayer, int id) {
         this.whitePlayer = whitePlayer;
@@ -22,9 +23,18 @@ public class Game {
         addResultToPlayerScores();
     }
 
-    private void addResultToPlayerScores(){
+    private void addResultToPlayerScores() {
         whitePlayer.addScoreFrom(this);
         blackPlayer.addScoreFrom(this);
+    }
+
+    public String getScoreOf(Player player) {
+        if (chessResult == null) return "";
+        if (chessResult.isDrawn()) return "½";
+        if (player == blackPlayer && chessResult.hasBlackWon() || player == whitePlayer && chessResult.hasWhiteWon()) {
+            return "1";
+        }
+        return "0";
     }
 
     public Player getWhitePlayer() {
@@ -48,11 +58,14 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return id == game.id;
+        return getBlackPlayer() == game.getBlackPlayer() && getWhitePlayer() == game.getWhitePlayer()
+                || getWhitePlayer() == game.getBlackPlayer() && getBlackPlayer() == game.getWhitePlayer();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        Player player1 = blackPlayer.getId() < whitePlayer.getId() ? blackPlayer : whitePlayer;
+        Player player2 = blackPlayer.getId() > whitePlayer.getId() ? blackPlayer : whitePlayer;
+        return Objects.hash(player1, player2);
     }
 }

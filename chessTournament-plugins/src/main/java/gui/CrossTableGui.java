@@ -21,7 +21,7 @@ public class CrossTableGui {
     public CrossTableGui(Tournament tournament) {
         this.tournament = tournament;
         setUpTable();
-        //refreshGamesList();
+        refreshGamesList();
     }
 
     public JPanel getCrossTablePanel() {
@@ -67,7 +67,9 @@ public class CrossTableGui {
     }
 
     private Object[] getGameResults(PlayerUiModel playerUiModel) {
-        return new Object[]{playerUiModel.getId(), playerUiModel.getFullName(), "x", "1", "0", "1", playerUiModel.getScore(), playerUiModel.getBuchholzScore(), playerUiModel.getSonnebornBergerScore()};
+        Player player = tournament.getPlayerService().findPlayerById(playerUiModel.getId());
+        Object[] rowInfo = new Object[]{playerUiModel.getId(), playerUiModel.getFullName(), playerUiModel.getScore(), playerUiModel.getBuchholzScore(), playerUiModel.getSonnebornBergerScore()};
+        return tournament.getCrossTableService().createCrossTableFor(player, rowInfo, 2);
     }
 
     {

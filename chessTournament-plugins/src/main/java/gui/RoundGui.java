@@ -1,11 +1,8 @@
 package gui;
 
+import application.exceptions.*;
 import game.Game;
 import application.Tournament;
-import application.exceptions.CurrentRoundIsNotClosedException;
-import application.exceptions.GameAlreadyAddedException;
-import application.exceptions.NotAllGamesAreFinishedException;
-import application.exceptions.PlayerNotRegisteredException;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import transport.GameToGameGuiMapper;
@@ -66,7 +63,7 @@ public class RoundGui extends JFrame {
                 nextRoundButton.setEnabled(false);
                 closeRoundButton.setEnabled(true);
                 refreshRoundFrame();
-            } catch (CurrentRoundIsNotClosedException | GameAlreadyAddedException | PlayerNotRegisteredException ex) {
+            } catch (CurrentRoundIsNotClosedException | GameAlreadyAddedException | PlayerNotRegisteredException | RuntimeException | NoMorePossibleOpponentsException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         });
