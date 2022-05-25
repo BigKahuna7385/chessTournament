@@ -14,7 +14,7 @@ public final class PlayerInfo {
         this.clubName = clubName;
         this.listNumber = listNumber;
         if (this.name == null || this.clubName == null || this.listNumber == null)
-            throw new InvalidPlayerInfoException(this);
+            throw new InvalidPlayerInfoException();
     }
 
     public static PlayerInfoFactory builder(){

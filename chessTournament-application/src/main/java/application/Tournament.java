@@ -32,15 +32,10 @@ public class Tournament {
         roundService = new RoundService(roundRepository, gameService, playerService);
     }
 
-    public void startTournament() throws TournamentServicesAreNotInitializedException {
+    public void startTournament() throws TournamentServicesAreNotInitializedException, GameAlreadyAddedException, PlayerNotRegisteredException {
         if (gameService == null || roundService == null || playerService == null)
             throw new TournamentServicesAreNotInitializedException();
-
-        try {
-            roundService.createFirstRound();
-        } catch (GameAlreadyAddedException | PlayerNotRegisteredException e) {
-            throw new RuntimeException(e);
-        }
+        roundService.createFirstRound();
     }
 
     public GameService getGameService() {

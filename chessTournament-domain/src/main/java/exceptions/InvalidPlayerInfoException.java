@@ -4,7 +4,7 @@ import player.PlayerInfo;
 
 public class InvalidPlayerInfoException extends Exception {
 
-    public InvalidPlayerInfoException(PlayerInfo playerInfo) {
+    public InvalidPlayerInfoException() {
         super("Invalid player info");
     }
 }

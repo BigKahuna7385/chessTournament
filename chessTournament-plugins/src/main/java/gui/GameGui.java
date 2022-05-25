@@ -51,7 +51,7 @@ public class GameGui extends JFrame {
                 tournament.getGameService().setWhiteWon(game);
                 closeWindow();
             } catch (InvalidResultException ex) {
-                throw new RuntimeException(ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             refreshTable();
         });
@@ -61,7 +61,7 @@ public class GameGui extends JFrame {
                 tournament.getGameService().setBlackWon(game);
                 closeWindow();
             } catch (InvalidResultException ex) {
-                throw new RuntimeException(ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             refreshTable();
         });
@@ -71,7 +71,7 @@ public class GameGui extends JFrame {
                 tournament.getGameService().setIsDrawn(game);
                 closeWindow();
             } catch (InvalidResultException ex) {
-                throw new RuntimeException(ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
             refreshTable();
         });

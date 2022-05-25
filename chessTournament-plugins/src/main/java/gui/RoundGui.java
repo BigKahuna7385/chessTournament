@@ -47,7 +47,7 @@ public class RoundGui extends JFrame {
                 tournament.getRoundService().closeRound();
                 nextRoundButton.setEnabled(true);
             } catch (NotAllGamesAreFinishedException ex) {
-                JOptionPane.showMessageDialog(null, "Not all games are finished, yet.");
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         });
 
@@ -57,7 +57,7 @@ public class RoundGui extends JFrame {
                 setEnabled(false);
                 displayRound();
             } catch (CurrentRoundIsNotClosedException | GameAlreadyAddedException | PlayerNotRegisteredException ex) {
-                JOptionPane.showMessageDialog(null, "The current round is still running.");
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         });
 

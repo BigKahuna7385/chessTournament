@@ -1,5 +1,7 @@
 package gui;
 
+import application.exceptions.GameAlreadyAddedException;
+import application.exceptions.PlayerNotRegisteredException;
 import player.Player;
 import application.Tournament;
 import application.exceptions.TournamentServicesAreNotInitializedException;
@@ -56,8 +58,9 @@ public class TournamentGui extends JFrame {
             try {
                 tournament.startTournament();
                 new RoundGui(tournament, this);
-            } catch (TournamentServicesAreNotInitializedException ex) {
-                JOptionPane.showMessageDialog(null, "The tournament was not correctly initialized.\n Please restart");
+            } catch (TournamentServicesAreNotInitializedException | GameAlreadyAddedException |
+                     PlayerNotRegisteredException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         });
 
