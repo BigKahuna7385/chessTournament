@@ -1,7 +1,6 @@
 package gui;
 
-import Game.ChessResult;
-import Game.Game;
+import game.Game;
 import application.Tournament;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -12,8 +11,6 @@ import transport.GameUiModel;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 

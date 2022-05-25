@@ -1,6 +1,6 @@
 package gui;
 
-import Player.Player;
+import player.Player;
 import application.Tournament;
 import application.exceptions.TournamentServicesAreNotInitializedException;
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -61,9 +61,7 @@ public class TournamentGui extends JFrame {
             }
         });
 
-        standingsButton.addActionListener(e -> {
-            new Standings(tournament);
-        });
+        standingsButton.addActionListener(e -> new Standings(tournament));
     }
 
     private void setUpTable() {
@@ -74,7 +72,7 @@ public class TournamentGui extends JFrame {
             }
         };
         tableModel.addColumn("Id");
-        tableModel.addColumn("Player");
+        tableModel.addColumn("player");
         tableModel.addColumn("Club");
         tableModel.addColumn("ELO");
         tableModel.addColumn("DWZ");

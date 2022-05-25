@@ -1,13 +1,12 @@
 package application.player;
 
-import Player.Player;
-import Player.PlayerRepository;
-import Player.TournamentRating;
+import player.Player;
+import player.PlayerRepository;
+import player.TournamentRating;
 import application.exceptions.PlayerAlreadyRegistered;
 import application.game.GameService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PlayerService {

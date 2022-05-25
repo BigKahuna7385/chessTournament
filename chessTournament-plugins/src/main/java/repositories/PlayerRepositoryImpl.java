@@ -1,7 +1,7 @@
 package repositories;
 
-import Player.Player;
-import Player.PlayerRepository;
+import player.Player;
+import player.PlayerRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;

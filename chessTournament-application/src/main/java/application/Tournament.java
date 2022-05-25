@@ -1,8 +1,8 @@
 package application;
 
-import Game.GameRepository;
-import Player.PlayerRepository;
-import Round.RoundRepository;
+import game.GameRepository;
+import player.PlayerRepository;
+import round.RoundRepository;
 import application.exceptions.GameAlreadyAddedException;
 import application.exceptions.PlayerNotRegisteredException;
 import application.exceptions.TournamentServicesAreNotInitializedException;

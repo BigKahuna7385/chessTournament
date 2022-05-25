@@ -1,7 +1,6 @@
 package transport;
 
-import Player.Player;
-import application.player.PlayerService;
+import player.Player;
 import exceptions.*;
 
 public class PlayerUiModelToPlayerMapper {

@@ -1,10 +1,10 @@
 package application.round;
 
-import Game.Game;
-import Player.Player;
-import Player.TournamentRating;
-import Round.Round;
-import Round.RoundRepository;
+import game.Game;
+import player.Player;
+import player.TournamentRating;
+import round.Round;
+import round.RoundRepository;
 import application.exceptions.CurrentRoundIsNotClosedException;
 import application.exceptions.GameAlreadyAddedException;
 import application.exceptions.NotAllGamesAreFinishedException;

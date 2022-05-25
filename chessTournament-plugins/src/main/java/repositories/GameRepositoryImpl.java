@@ -1,7 +1,7 @@
 package repositories;
 
-import Game.Game;
-import Game.GameRepository;
+import game.Game;
+import game.GameRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package gui;
 
-import Player.Player;
+import player.Player;
 import application.Tournament;
 import application.exceptions.PlayerAlreadyRegistered;
 import exceptions.*;
@@ -12,8 +12,6 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;

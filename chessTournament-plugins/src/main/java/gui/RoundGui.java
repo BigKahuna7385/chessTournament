@@ -1,6 +1,6 @@
 package gui;
 
-import Game.Game;
+import game.Game;
 import application.Tournament;
 import application.exceptions.CurrentRoundIsNotClosedException;
 import application.exceptions.GameAlreadyAddedException;

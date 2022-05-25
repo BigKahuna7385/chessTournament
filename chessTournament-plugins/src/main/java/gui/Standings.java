@@ -1,12 +1,9 @@
 package gui;
 
-import Game.Game;
-import Player.Player;
+import player.Player;
 import application.Tournament;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import transport.GameToGameGuiMapper;
-import transport.GameUiModel;
 import transport.PlayerToPlayerUIMapper;
 import transport.PlayerUiModel;
 
@@ -15,8 +12,6 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.StyleContext;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Locale;
 
 public class Standings extends JFrame {

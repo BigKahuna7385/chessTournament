@@ -1,6 +1,6 @@
 package exceptions;
 
-import Player.PlayerInfo;
+import player.PlayerInfo;
 
 public class InvalidPlayerInfoException extends Exception {
 

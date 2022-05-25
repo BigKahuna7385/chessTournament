@@ -1,6 +1,6 @@
 package transport;
 
-import Game.Game;
+import game.Game;
 
 public class GameToGameGuiMapper {
     public GameUiModel map(Game game) {

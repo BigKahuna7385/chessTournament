@@ -1,12 +1,12 @@
 package application.game;
 
-import Game.Game;
-import Game.GameRepository;
-import Game.ChessResult;
-import Player.Player;
-import Player.PlayerRepository;
-import Round.Round;
-import Round.RoundRepository;
+import game.Game;
+import game.GameRepository;
+import game.ChessResult;
+import player.Player;
+import player.PlayerRepository;
+import round.Round;
+import round.RoundRepository;
 import application.exceptions.GameAlreadyAddedException;
 import application.exceptions.PlayerNotRegisteredException;
 import exceptions.InvalidResultException;

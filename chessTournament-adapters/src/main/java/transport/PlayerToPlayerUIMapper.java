@@ -1,6 +1,6 @@
 package transport;
 
-import Player.Player;
+import player.Player;
 
 public class PlayerToPlayerUIMapper {
 
