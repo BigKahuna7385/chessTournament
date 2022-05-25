@@ -34,17 +34,15 @@ class TournamentRatingTest {
     }
 
     void setupPlayers() {
-        try {
-            playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(1).build();
-            playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(2).build();
-            playerC = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(3).build();
-            playerD = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(4).build();
-            playerE = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(5).build();
-            playerF = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(6).build();
-            playerG = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(7).build();
-        } catch (InvalidRatingException | InvalidRatingNumberException e) {
-            throw new RuntimeException(e);
-        }
+
+        playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(1).build();
+        playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(2).build();
+        playerC = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(3).build();
+        playerD = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(4).build();
+        playerE = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(5).build();
+        playerF = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(6).build();
+        playerG = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(7).build();
+
     }
 
     void setupGameResults() {

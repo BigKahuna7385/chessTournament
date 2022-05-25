@@ -6,8 +6,8 @@ import exceptions.InvalidRatingNumberException;
 import java.util.Objects;
 
 public final class Rating {
-     final RatingNumber elo;
-     final RatingNumber dwz;
+    final RatingNumber elo;
+    final RatingNumber dwz;
 
     public Rating(RatingNumber elo, RatingNumber dwz) throws InvalidRatingException {
         this.elo = elo;
@@ -17,7 +17,10 @@ public final class Rating {
     }
 
     public Rating(int elo, int dwz) throws InvalidRatingNumberException {
-        this.elo = new RatingNumber(elo);
+        if (elo == 0)
+            this.elo = null;
+        else
+            this.elo = new RatingNumber(elo);
         this.dwz = new RatingNumber(dwz);
     }
 
@@ -29,7 +32,7 @@ public final class Rating {
         return dwz;
     }
 
-    public static RatingFactory builder(){
+    public static RatingFactory builder() {
         return new RatingFactory();
     }
 

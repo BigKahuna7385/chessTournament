@@ -10,12 +10,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ListNumberTest {
 
     @Test
-    void createInvalidListNumber(){
-        try{
+    void createInvalidListNumber() {
+        try {
             new ListNumber(-1);
             fail("Expected a InvalidListNumberException to be thrown");
         } catch (InvalidListNumberException exception) {
-            assert(exception.getMessage().equals("Invalid list number"));
+            assert (exception.getMessage().equals("Invalid list number"));
         }
+    }
+
+    @Test
+    void isEqual() throws InvalidListNumberException {
+        ListNumber listNumber1 = new ListNumber(1000);
+        ListNumber listNumber2 = new ListNumber(1000);
+        assertThat(listNumber1).isEqualTo(listNumber2);
     }
 }

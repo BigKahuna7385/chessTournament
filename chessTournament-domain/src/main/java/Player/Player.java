@@ -78,7 +78,7 @@ public class Player implements Comparable<Player> {
     @Override
     public int compareTo(Player o) {
         if (this.getScore() != o.getScore())
-            return (int) (o.getScore() - this.getScore()) * 2;
+            return (int) ((o.getScore() - this.getScore()) * 2);
         if (this.getTournamentRating() != o.getTournamentRating()) {
             if (this.getTournamentRating().getSonnebornBergerScore() != o.getTournamentRating().getSonnebornBergerScore())
                 return (int) (o.getTournamentRating().getSonnebornBergerScore() - this.getTournamentRating().getSonnebornBergerScore()) * 4;
@@ -110,5 +110,14 @@ public class Player implements Comparable<Player> {
         return rating;
     }
 
-
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerInfo=" + playerInfo +
+                ", rating=" + rating +
+                ", score=" + score +
+                ", tournamentRating=" + tournamentRating +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -77,7 +77,7 @@ public class PlayerFactory {
         return this;
     }
 
-    public PlayerFactory id(int id) throws InvalidRatingException, InvalidRatingNumberException {
+    public PlayerFactory id(int id) {
         this.id = id;
         return this;
     }

@@ -7,19 +7,21 @@ import exceptions.InvalidRatingNumberException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PlayerTest {
 
     @Test
-    void createPlayerTest() throws InvalidRatingNumberException, InvalidRatingException {
+    void createPlayerTest() {
         PlayerName playerName = mock(PlayerName.class);
         when(playerName.getFirstName()).thenReturn("Daniel");
         when(playerName.getLastName()).thenReturn("Burger");
@@ -55,20 +57,8 @@ public class PlayerTest {
 
     @Test
     void testRatingSortingByElo() {
-        RatingNumber ratingNumber1000 = mock(RatingNumber.class);
-        when(ratingNumber1000.getRatingNumber()).thenReturn(1000);
-        RatingNumber ratingNumber2000 = mock(RatingNumber.class);
-        when(ratingNumber2000.getRatingNumber()).thenReturn(2000);
-
-        Rating ratingA = mock(Rating.class);
-        when(ratingA.getElo()).thenReturn(ratingNumber1000);
-        when(ratingA.getDwz()).thenReturn(ratingNumber2000);
-        Rating ratingB = mock(Rating.class);
-        when(ratingB.getElo()).thenReturn(ratingNumber2000);
-        when(ratingB.getDwz()).thenReturn(ratingNumber1000);
-
-        Player playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(ratingA).build();
-        Player playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(ratingB).build();
+        Player playerA = setUpPlayerWith(2000, 1000, 0);
+        Player playerB = setUpPlayerWith(1000, 2000, 1);
 
         List<Player> playerList = new ArrayList<>();
 
@@ -83,21 +73,8 @@ public class PlayerTest {
 
     @Test
     void testRatingSortingByDwZ() {
-        RatingNumber ratingNumber1000 = mock(RatingNumber.class);
-        when(ratingNumber1000.getRatingNumber()).thenReturn(1000);
-        RatingNumber ratingNumber2000 = mock(RatingNumber.class);
-        when(ratingNumber2000.getRatingNumber()).thenReturn(2000);
-
-        Rating ratingA = mock(Rating.class);
-        when(ratingA.getElo()).thenReturn(null);
-        when(ratingA.getDwz()).thenReturn(ratingNumber2000);
-        Rating ratingB = mock(Rating.class);
-        when(ratingB.getElo()).thenReturn(ratingNumber2000);
-        when(ratingB.getDwz()).thenReturn(ratingNumber1000);
-
-        Player playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(ratingA).build();
-
-        Player playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(ratingB).build();
+        Player playerA = setUpPlayerWith(2000, 0, 0);
+        Player playerB = setUpPlayerWith(1000, 2000, 1);
 
         List<Player> playerList = new ArrayList<>();
 
@@ -112,33 +89,43 @@ public class PlayerTest {
 
     @Test
     void testRatingSortingByScore() {
-        Player playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).build();
-        Player playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).build();
+        Player playerA = setUpPlayer(0);
+        Player playerB = setUpPlayer(1);
+        Player playerC = setUpPlayerWith(1500, 1500, 2);
+        Player playerD = setUpPlayerWith(1000, 1000, 3);
 
         ChessResult chessResultWhiteHasWon = mock(ChessResult.class);
         when(chessResultWhiteHasWon.hasWhiteWon()).thenReturn(true);
+        ChessResult chessResultDraw = mock(ChessResult.class);
+        when(chessResultDraw.isDrawn()).thenReturn(true);
 
-        Game gameWhiteWon = mock(Game.class);
-        when(gameWhiteWon.getResult()).thenReturn(chessResultWhiteHasWon);
-        when(gameWhiteWon.getWhitePlayer()).thenReturn(playerA);
+        Game gameWhiteWon = mockUpGame(playerA, playerB, chessResultWhiteHasWon);
+        Game gameDraw = mockUpGame(playerC, playerD, chessResultDraw);
 
         playerA.addScoreFrom(gameWhiteWon);
+        playerB.addScoreFrom(gameWhiteWon);
+        playerC.addScoreFrom(gameDraw);
+        playerD.addScoreFrom(gameDraw);
 
         List<Player> playerList = new ArrayList<>();
 
+        playerList.add(playerD);
         playerList.add(playerB);
+        playerList.add(playerC);
         playerList.add(playerA);
 
         Collections.sort(playerList);
 
         assertThat(playerList.get(0)).isEqualTo(playerA);
-        assertThat(playerList.get(1)).isEqualTo(playerB);
+        assertThat(playerList.get(1)).isEqualTo(playerC);
+        assertThat(playerList.get(2)).isEqualTo(playerD);
+        assertThat(playerList.get(3)).isEqualTo(playerB);
     }
 
     @Test
-    void testCorrectGameResultsForPlayer(){
+    void testCorrectGameResultsForPlayer() {
 
-        Player player = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).build();
+        Player player = setUpPlayer(0);
 
         ChessResult whiteHasWon = mock(ChessResult.class);
         when(whiteHasWon.hasWhiteWon()).thenReturn(true);
@@ -172,9 +159,9 @@ public class PlayerTest {
     }
 
     @Test
-    void testGetOpponentMethod(){
-        Player player = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).build();
-        Player opponent = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).build();
+    void testGetOpponentMethod() {
+        Player player = setUpPlayer(0);
+        Player opponent = setUpPlayer(1);
 
         Game game = mock(Game.class);
         when(game.getWhitePlayer()).thenReturn(player);
@@ -187,6 +174,32 @@ public class PlayerTest {
         when(rematch.getBlackPlayer()).thenReturn(player);
 
         assertThat(player.getOpponentIn(game)).isEqualTo(opponent);
+    }
+
+    Player setUpPlayer(int id) {
+        return Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(id).build();
+    }
+
+    Player setUpPlayerWith(int dwz, int elo, int id) {
+        RatingNumber ratingNumberDwz = mock(RatingNumber.class);
+        when(ratingNumberDwz.getRatingNumber()).thenReturn(dwz);
+        RatingNumber ratingNumberElo = mock(RatingNumber.class);
+        when(ratingNumberElo.getRatingNumber()).thenReturn(elo);
+        Rating rating = mock(Rating.class);
+        if (dwz > 0)
+            when(rating.getDwz()).thenReturn(ratingNumberDwz);
+        if (elo > 0)
+            when(rating.getElo()).thenReturn(ratingNumberElo);
+
+        return Player.builder().playerInfo(mock(PlayerInfo.class)).rating(rating).id(id).build();
+    }
+
+    Game mockUpGame(Player whitePlayer, Player blackPlayer, ChessResult result) {
+        Game game = mock(Game.class);
+        when(game.getResult()).thenReturn(result);
+        when(game.getWhitePlayer()).thenReturn(whitePlayer);
+        when(game.getBlackPlayer()).thenReturn(blackPlayer);
+        return game;
     }
 
 }
