@@ -6,7 +6,6 @@ public class TournamentRatingCalculator {
 
     private Game[] games;
     private Player player;
-
     private final BuchholzScore buchholzScore;
     private final SonnebornBergerScore sonnebornBergerScore;
 

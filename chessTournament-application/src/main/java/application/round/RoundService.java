@@ -54,7 +54,6 @@ public class RoundService {
             if (rankedPlayerList.length < i + 1)
                 break;
             gameList.add(gameService.createNew(rankedPlayerList[i++], rankedPlayerList[i]));
-
         }
         return gameList.toArray(new Game[0]);
     }
