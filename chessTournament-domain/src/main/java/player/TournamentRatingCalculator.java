@@ -26,7 +26,8 @@ public class TournamentRatingCalculator {
     }
 
     public TournamentRating calculate() {
-        return new TournamentRating(buchholzScore.calculateBuchholzScoreWith(games, player), sonnebornBergerScore.calculateSonnebornBergerScoreWith(games, player));
+        return new TournamentRating(buchholzScore.calculateBuchholzScoreWith(games, player),
+                sonnebornBergerScore.calculateSonnebornBergerScoreWith(games, player));
     }
 
 }

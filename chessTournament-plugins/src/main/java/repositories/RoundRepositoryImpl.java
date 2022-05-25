@@ -25,6 +25,15 @@ public class RoundRepositoryImpl implements RoundRepository {
     }
 
     @Override
+    public Round getByRoundById(int currentRoundNumber) {
+        for (Round round : roundList)
+            if (round.getId() == currentRoundNumber) {
+                return round;
+            }
+        return null;
+    }
+
+    @Override
     public void update(Round round) {
         roundList.remove(round);
         roundList.add(round);

@@ -48,7 +48,7 @@ public class RoundService {
     }
 
     private Game[] findNewPairings() throws GameAlreadyAddedException, PlayerNotRegisteredException {
-        Player[] rankedPlayerList = playerService.getPlayerRanked();
+        Player[] rankedPlayerList = playerService.getRankedPlayers();
         List<Game> gameList = new ArrayList<>();
         for (int i = 0; i < rankedPlayerList.length; i++) {
             if (rankedPlayerList.length < i + 1)
@@ -66,7 +66,7 @@ public class RoundService {
 
     public Round getCurrentRound() {
         if (roundRepository.list().size() == 0) return null;
-        return roundRepository.list().get(roundRepository.list().size() - 1);
+        return roundRepository.getByRoundById(getCurrentRoundNumber());
     }
 
     public int getCurrentRoundNumber() {
@@ -75,8 +75,7 @@ public class RoundService {
 
     private boolean allGamesAreFinished() throws NotAllGamesAreFinishedException {
         for (Game game : gameService.getAllGamesIn(Objects.requireNonNull(getCurrentRound()))) {
-            if (game.getResult() == null)
-                throw new NotAllGamesAreFinishedException();
+            if (game.getResult() == null) throw new NotAllGamesAreFinishedException();
         }
         return true;
     }

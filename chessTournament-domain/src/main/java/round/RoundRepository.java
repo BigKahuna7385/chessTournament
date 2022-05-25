@@ -13,4 +13,6 @@ public interface RoundRepository {
     void update(Round round);
 
     List<Round> list();
+
+    Round getByRoundById(int currentRoundNumber);
 }

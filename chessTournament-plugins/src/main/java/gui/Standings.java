@@ -58,7 +58,7 @@ public class Standings extends JFrame {
 
         tableModel.setRowCount(0);
 
-        for (Player player : tournament.getPlayerService().getPlayerRanked()) {
+        for (Player player : tournament.getPlayerService().getRankedPlayers()) {
             PlayerUiModel playerUiModel = playerToPlayerUIMapper.map(player);
             tableModel.addRow(new Object[]{playerUiModel.getId(), playerUiModel.getFullName(), playerUiModel.getScore(), playerUiModel.getBuchholzScore(), playerUiModel.getSonnebornBergerScore()});
         }

@@ -19,6 +19,10 @@ public class Game {
 
     public void setResult(ChessResult chessResult) {
         this.chessResult = chessResult;
+        addResultToPlayerScores();
+    }
+
+    private void addResultToPlayerScores(){
         whitePlayer.addScoreFrom(this);
         blackPlayer.addScoreFrom(this);
     }

@@ -35,7 +35,7 @@ public class PlayerService {
         return TournamentRating.calculateTournamentRating().player(player).games(gameService.getAllGamesOf(player)).calculate();
     }
 
-    public Player[] getPlayerRanked() {
+    public Player[] getRankedPlayers() {
         return playerRepository.listSortedByRanking().toArray(new Player[0]);
     }
 
