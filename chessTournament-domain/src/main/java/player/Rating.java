@@ -23,8 +23,8 @@ public final class Rating {
         return dwz;
     }
 
-    public static RatingFactory builder() {
-        return new RatingFactory();
+    public static RatingBuilder builder() {
+        return new RatingBuilder();
     }
 
     @Override

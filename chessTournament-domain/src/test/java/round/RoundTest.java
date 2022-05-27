@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoundTest {
     @Test
-    void addGamesToRound(){
+    void createNewRoundTest(){
         Game[] games = new Game[8];
         Round round = new Round(games,1);
 

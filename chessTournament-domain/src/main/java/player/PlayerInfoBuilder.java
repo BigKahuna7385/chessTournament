@@ -2,7 +2,7 @@ package player;
 
 import exceptions.InvalidPlayerInfoException;
 
-public class PlayerInfoFactory {
+public class PlayerInfoBuilder {
 
     private PlayerName playerName;
     private String clubName;
@@ -12,17 +12,17 @@ public class PlayerInfoFactory {
         return new PlayerInfo(playerName, clubName, listNumber);
     }
 
-    public PlayerInfoFactory playerName(PlayerName playerName){
+    public PlayerInfoBuilder playerName(PlayerName playerName){
         this.playerName = playerName;
         return this;
     }
 
-    public PlayerInfoFactory clubName(String clubName){
+    public PlayerInfoBuilder clubName(String clubName){
         this.clubName = clubName;
         return this;
     }
 
-    public PlayerInfoFactory listNumber(ListNumber listNumber){
+    public PlayerInfoBuilder listNumber(ListNumber listNumber){
         this.listNumber = listNumber;
         return this;
     }

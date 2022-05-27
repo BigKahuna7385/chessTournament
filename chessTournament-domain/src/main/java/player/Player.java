@@ -46,8 +46,8 @@ public class Player implements Comparable<Player> {
         this.tournamentRating = tournamentRating;
     }
 
-    public static PlayerFactory builder() {
-        return new PlayerFactory();
+    public static PlayerBuilder builder() {
+        return new PlayerBuilder();
     }
 
     public void addScoreFrom(Game game) {

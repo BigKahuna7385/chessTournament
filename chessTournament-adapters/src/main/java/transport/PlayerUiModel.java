@@ -12,7 +12,8 @@ public class PlayerUiModel {
     private final double buchholzScore;
     private final double sonnebornBergerScore;
 
-    public PlayerUiModel(String firstName, String lastName, String clubName, int listNumber, int elo, int dwz, int id, double score, double buchholzScore, double sonnebornBergerScore) {
+    public PlayerUiModel(String firstName, String lastName, String clubName, int listNumber, int elo, int dwz, int id,
+                         double score, double buchholzScore, double sonnebornBergerScore) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.clubName = clubName;

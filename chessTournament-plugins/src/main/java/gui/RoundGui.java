@@ -68,7 +68,7 @@ public class RoundGui extends JFrame {
             }
         });
 
-        roundNumber.setText("Round N° " + tournament.getRoundService().getCurrentRoundNumber());
+
     }
 
     private void displayRound() {
@@ -80,7 +80,7 @@ public class RoundGui extends JFrame {
         refreshGameList();
         standingsGui.refreshGamesList();
         crossTableGui.refreshGamesList();
-
+        roundNumber.setText("Round N° " + tournament.getRoundService().getCurrentRoundNumber());
         revalidate();
         repaint();
     }

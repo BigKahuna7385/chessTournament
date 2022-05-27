@@ -44,11 +44,11 @@ public class PlayerTest {
     }
 
     @Test
-    void twoPlayersAreEqual() {
+    void twoPlayersAreEqualTest() {
         PlayerInfo playerInfo = mock(PlayerInfo.class);
         Rating rating = mock(Rating.class);
-        Player player1 = builder().playerInfo(playerInfo).rating(rating).build();
-        Player player2 = builder().playerInfo(playerInfo).rating(rating).build();
+        Player player1 = builder().playerInfo(playerInfo).rating(rating).id(0).build();
+        Player player2 = builder().playerInfo(playerInfo).rating(rating).id(0).build();
         assertEquals(player1, player2);
     }
 

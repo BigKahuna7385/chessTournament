@@ -10,7 +10,6 @@ import java.util.List;
 
 public class CrossTableService {
 
-
     private PlayerService playerService;
 
     public CrossTableService( PlayerService playerService) {

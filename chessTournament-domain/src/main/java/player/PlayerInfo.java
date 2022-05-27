@@ -17,8 +17,8 @@ public final class PlayerInfo {
             throw new InvalidPlayerInfoException();
     }
 
-    public static PlayerInfoFactory builder(){
-        return new PlayerInfoFactory();
+    public static PlayerInfoBuilder builder(){
+        return new PlayerInfoBuilder();
     }
 
     public PlayerName getName() {

@@ -33,15 +33,13 @@ class TournamentRatingTest {
     }
 
     void setupPlayers() {
-
-        playerA = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(1).build();
-        playerB = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(2).build();
-        playerC = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(3).build();
-        playerD = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(4).build();
-        playerE = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(5).build();
-        playerF = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(6).build();
-        playerG = Player.builder().playerInfo(mock(PlayerInfo.class)).rating(mock(Rating.class)).id(7).build();
-
+        playerA = mockUpPlayerWith(5d);
+        playerB = mockUpPlayerWith(4.5d);
+        playerC = mockUpPlayerWith(4d);
+        playerD = mockUpPlayerWith(4d);
+        playerE = mockUpPlayerWith(2.5d);
+        playerF = mockUpPlayerWith(1d);
+        playerG = mockUpPlayerWith(0d);
     }
 
     void setupGameResults() {
@@ -86,24 +84,27 @@ class TournamentRatingTest {
         return game;
     }
 
+    Player mockUpPlayerWith(double score) {
+        Player player = mock(Player.class);
+        when(player.getScore()).thenReturn(score);
+        return player;
+    }
+
     @Test
     void testSonnebornBergerScore() {
-        assertThat(playerA.getScore()).isEqualTo(5d);
-        assertThat(playerB.getScore()).isEqualTo(4.5d);
-        assertThat(playerC.getScore()).isEqualTo(4d);
-        assertThat(playerD.getScore()).isEqualTo(4d);
-        assertThat(playerE.getScore()).isEqualTo(2.5d);
-        assertThat(playerF.getScore()).isEqualTo(1d);
-        assertThat(playerG.getScore()).isEqualTo(0d);
-
-        playerC.setTournamentRating(TournamentRating.calculateTournamentRating().player(playerC).games(games).calculate());
-        playerD.setTournamentRating(TournamentRating.calculateTournamentRating().player(playerD).games(games).calculate());
-
-        assertThat(playerC.getTournamentRating().getSonnebornBergerScore()).isEqualTo(9.0d);
-        assertThat(playerD.getTournamentRating().getSonnebornBergerScore()).isEqualTo(7.75d);
-
+        SonnebornBergerScore sonnebornBergerScore = new SonnebornBergerScore();
+        assertThat(sonnebornBergerScore.calculateSonnebornBergerScoreWith(games,playerC)).isEqualTo(9.0d);
+        assertThat(sonnebornBergerScore.calculateSonnebornBergerScoreWith(games,playerD)).isEqualTo(7.75d);
         //https://de.wikipedia.org/wiki/Feinwertung#Einzelwertungen
+    }
 
+    @Test
+    void testBuchholzScore(){
+        BuchholzScore buchholzScore = new BuchholzScore();
+        buchholzScore.calculateBuchholzScoreWith(games,playerA);
+
+        assertThat(buchholzScore.calculateBuchholzScoreWith(games,playerA)).isEqualTo(16d);
+        assertThat(buchholzScore.calculateBuchholzScoreWith(games,playerB)).isEqualTo(16.5d);
     }
 
 }

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class PlayerInfoTest {
 
     @Test
-    void invalidPlayerInfo() {
+    void invalidPlayerInfoTest() {
         try {
             PlayerInfo.builder().clubName(null).playerName(null).listNumber(null).build();
             fail("Expected InvalidPlayerInfoException to be thrown");

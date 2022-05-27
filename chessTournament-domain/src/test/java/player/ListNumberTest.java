@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ListNumberTest {
 
     @Test
-    void createInvalidListNumber() {
+    void createInvalidListNumberTest() {
         try {
             new ListNumber(-1);
             fail("Expected a InvalidListNumberException to be thrown");
@@ -20,7 +20,7 @@ class ListNumberTest {
     }
 
     @Test
-    void isEqual() throws InvalidListNumberException {
+    void isEqualTest() throws InvalidListNumberException {
         ListNumber listNumber1 = new ListNumber(1000);
         ListNumber listNumber2 = new ListNumber(1000);
         assertThat(listNumber1).isEqualTo(listNumber2);
