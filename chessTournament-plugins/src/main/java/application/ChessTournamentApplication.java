@@ -1,9 +1,6 @@
 package application;
 
-import application.exceptions.PlayerAlreadyRegistered;
-import exceptions.*;
 import gui.TournamentGui;
-import player.Player;
 import repositories.GameRepositoryImpl;
 import repositories.PlayerRepositoryImpl;
 import repositories.RoundRepositoryImpl;
