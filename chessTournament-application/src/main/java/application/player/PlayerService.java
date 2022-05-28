@@ -15,7 +15,6 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
     private final GameService gameService;
     private int id;
-
     private Player player;
 
     public PlayerService(PlayerRepository playerRepository, GameService gameService) {

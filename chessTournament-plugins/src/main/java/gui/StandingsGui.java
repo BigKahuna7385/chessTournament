@@ -14,7 +14,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
-public class StandingsGui  {
+public class StandingsGui {
     private JLabel jLabelStandings;
     private JTable standingsTable;
     private JPanel standingsPanel;
@@ -46,7 +46,6 @@ public class StandingsGui  {
 
         standingsTable.setModel(tableModel);
         standingsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        standingsTable.setAutoCreateRowSorter(true);
 
     }
 
@@ -84,7 +83,7 @@ public class StandingsGui  {
         jLabelStandings = new JLabel();
         Font jLabelStandingsFont = this.$$$getFont$$$(null, Font.BOLD, 26, jLabelStandings.getFont());
         if (jLabelStandingsFont != null) jLabelStandings.setFont(jLabelStandingsFont);
-        jLabelStandings.setText("Label");
+        jLabelStandings.setText("Standings");
         standingsPanel.add(jLabelStandings, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         standingsPanel.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -120,4 +119,5 @@ public class StandingsGui  {
     public JComponent $$$getRootComponent$$$() {
         return standingsPanel;
     }
+
 }

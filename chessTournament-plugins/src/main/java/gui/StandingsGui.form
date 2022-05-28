@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <font size="26" style="1"/>
-          <text value="Label"/>
+          <text value="Standings"/>
         </properties>
       </component>
       <scrollpane id="d4e4f">

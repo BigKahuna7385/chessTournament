@@ -27,5 +27,4 @@ public class PlayerInfoBuilder {
         return this;
     }
 
-
 }

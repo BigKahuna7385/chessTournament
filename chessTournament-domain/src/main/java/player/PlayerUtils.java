@@ -5,7 +5,6 @@ import game.Game;
 public class PlayerUtils {
     private Player player;
 
-
     public PlayerUtils has(Player player) {
         this.player = player;
         return this;
